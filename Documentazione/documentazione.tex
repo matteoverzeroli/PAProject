@@ -1,0 +1,86 @@
+\documentclass{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{import}
+\usepackage{todonotes}
+\usepackage{color}
+\usepackage{rotating}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{pdfpages}
+\usepackage{siunitx}
+\usepackage[italiano]{algorithm2e}
+\usepackage{pdflscape}
+\usepackage{subfig}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\usepackage[signatures,swapnames,sans]{frontespizio}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\definecolor{eclipseStrings}{RGB}{42,0.0,255}
+\definecolor{eclipseKeywords}{RGB}{127,0,85}
+\colorlet{numb}{magenta!60!black}
+
+\lstset{style=mystyle}
+
+\usepackage{geometry}
+\geometry{portrait, margin=3cm}
+
+\newcommand{\Fig}[0]{Fig.}
+\newcommand{\Alg}[0]{Alg.}
+
+\begin{document}
+	
+	\begin{frontespizio}
+		\Margini{3cm}{3cm}{3cm}{3cm}
+		\Universita{Bergamo}
+		\Logo[43.332mm]{unibg-mark}
+		\Divisione{Scuola di Ingegneria}
+		\Corso[Laurea Magistrale]{Ingegneria Informatica}
+		\Titolo{Progetto corso di Programmazione avanzata}
+		\Sottotitolo{C++ e Haskell}
+		\Punteggiatura{}
+		\NRelatore{Prof.}{}
+		\Relatore{Angelo Gargantini}
+		\Candidato[1057926]{Matteo Verzeroli}
+		\Annoaccademico{2021--2022}
+		\begin{Preambolo*}
+			\usepackage[italian]{babel}
+			\usepackage[T1]{fontenc}
+			\usepackage[utf8]{inputenc}
+			\usepackage{microtype}
+			\usepackage{lmodern}
+			\graphicspath{{img/}}
+			
+			\renewcommand{\frontinstitutionfont}{\fontsize{14}{17}\bfseries\scshape}
+			\renewcommand{\fronttitlefont}{\fontsize{17}{21}\bfseries\scshape}
+			\renewcommand{\frontfootfont}{\fontsize{12}{14}\bfseries\scshape}
+		\end{Preambolo*}
+	\end{frontespizio}	
+\end{document}
