@@ -11,8 +11,10 @@ class UserRepository
 public:
     static UserRepository* getInstance();
     std::shared_ptr<User> getUserById(int userid);
-    void insertUser(User& user);
+    void insertUser(User* user);
+    bool removeUser(int userid);
     void printTable();
+
     ~UserRepository(){
         std::cout<< "delete userrepo" <<std::endl;
     }
@@ -20,6 +22,7 @@ public:
 private:
     std::map<int, std::shared_ptr<User>> usertable;
     static UserRepository* instance;
+
     UserRepository();
 };
 

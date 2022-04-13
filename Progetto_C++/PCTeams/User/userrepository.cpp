@@ -26,9 +26,14 @@ std::shared_ptr<User> UserRepository::getUserById(int userid){
     }
 }
 
-void UserRepository::insertUser(User& user){
-    std::shared_ptr<User> new_user(new User(user));
-    usertable[user.getUserid()] = new_user;
+void UserRepository::insertUser(User* user){
+    std::shared_ptr<User> new_user(user);
+    usertable[user->getUserid()] = new_user;
+}
+
+bool UserRepository::removeUser(int userid)
+{
+    return usertable.erase(userid);
 }
 
 void UserRepository::printTable(){
