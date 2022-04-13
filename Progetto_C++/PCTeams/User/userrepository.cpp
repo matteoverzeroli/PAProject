@@ -16,8 +16,8 @@ UserRepository* UserRepository::getInstance(){
     return instance;
 }
 
-std::shared_ptr<User> UserRepository::getUserById(int userid){
-    auto it = usertable.find(userid);
+std::shared_ptr<User> UserRepository::getUserById(int iduser){
+    auto it = usertable.find(iduser);
     if(it != usertable.end()){
         return it->second;
     }
@@ -28,12 +28,12 @@ std::shared_ptr<User> UserRepository::getUserById(int userid){
 
 void UserRepository::insertUser(User* user){
     std::shared_ptr<User> new_user(user);
-    usertable[user->getUserid()] = new_user;
+    usertable[user->getIduser()] = new_user;
 }
 
-bool UserRepository::removeUser(int userid)
+bool UserRepository::removeUser(int iduser)
 {
-    return usertable.erase(userid);
+    return usertable.erase(iduser);
 }
 
 void UserRepository::printTable(){

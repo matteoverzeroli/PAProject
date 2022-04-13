@@ -6,6 +6,7 @@
 #include "user/administrator.h"
 #include "user/foreman.h"
 #include "user/volunteer.h"
+#include "team/team.h"
 
 using namespace std;
 
@@ -20,9 +21,11 @@ int main(int argc, char *argv[])
     loginform.show();
 
     QDate data (1999,07,18);
-    User user("pippo","matteo","verzeroli", data, "matteoverzeroli@live.it", "3407580457", 'm');
+    User user("pippo","matteo","verzeroli", new QDate(1999,07,18), "matteoverzeroli@live.it", "3407580457", 'm');
 
-    Foreman foreman("pippo","Luca","verzeroli", data, "matteoverzeroli@live.it", "3407580457", 'm');
+    Foreman foreman("pippo","Luca","verzeroli", new QDate(1999,07,18), "matteoverzeroli@live.it", "3407580457", 'm');
+
+    Team* team = new Team("SVTeam","sovere",new QGeoCoordinate(45.81666564941406,45.81666564941406));
 
 
     UserRepository::getInstance()->insertUser(new User(user));

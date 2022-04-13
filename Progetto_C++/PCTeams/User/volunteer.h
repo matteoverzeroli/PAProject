@@ -7,11 +7,12 @@
 class Volunteer : virtual public User
 {
 public:
-    Volunteer(const QString &password, const QString &name, const QString &surname, const QDate &birthday, const QString &email, const QString &cellnumber, const QChar &sex, Team *team = nullptr);
+    Volunteer(const QString &password, const QString &name, const QString &surname, QDate *birthday, const QString &email, const QString &cellnumber, const QChar &sex, Team *team = nullptr);
     Volunteer();
 
     virtual ~Volunteer(){
         delete team;
+        delete birthday;
         std:: cout << "delete volunteer\n";
     }
     Team *getTeam() const;

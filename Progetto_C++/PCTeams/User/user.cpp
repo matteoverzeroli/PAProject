@@ -1,15 +1,15 @@
 #include "user/user.h"
 
-int User::progressivo = 1000;
+int User::idprog = 1000;
 
-int User::getUserid() const
+int User::getIduser() const
 {
-    return userid;
+    return iduser;
 }
 
-void User::setUserid(int newUserid)
+void User::setIduser(int newIduser)
 {
-    userid = newUserid;
+    iduser = newIduser;
 }
 
 const QString &User::getPassword() const
@@ -42,12 +42,12 @@ void User::setSurname(const QString &newSurname)
     surname = newSurname;
 }
 
-const QDate &User::getBirthday() const
+const QDate *User::getBirthday() const
 {
     return birthday;
 }
 
-void User::setBirthday(const QDate &newBirthday)
+void User::setBirthday(QDate *newBirthday)
 {
     birthday = newBirthday;
 }
@@ -82,8 +82,8 @@ void User::setSex(const QChar &newSex)
     sex = newSex;
 }
 
-User::User(const QString &password, const QString &name, const QString &surname, const QDate &birthday, const QString &email, const QString &cellnumber, const QChar &sex) :
-    userid(progressivo++),
+User::User(const QString &password, const QString &name, const QString &surname, QDate *birthday, const QString &email, const QString &cellnumber, const QChar &sex) :
+    iduser(idprog++),
     password(password),
     name(name),
     surname(surname),
@@ -100,5 +100,5 @@ User::User()
 
 
 std::ostream& operator<<(std::ostream &strm, const User &u) {
-  return strm << "User: " << u.userid << " " << u.name.toStdString() << " " << u.surname.toStdString();
+  return strm << "User: " << u.iduser << " " << u.name.toStdString() << " " << u.surname.toStdString();
 }

@@ -10,9 +10,9 @@ class UserRepository
 {
 public:
     static UserRepository* getInstance();
-    std::shared_ptr<User> getUserById(int userid);
+    std::shared_ptr<User> getUserById(int iduser);
     void insertUser(User* user);
-    bool removeUser(int userid);
+    bool removeUser(int iduser);
     void printTable();
 
     ~UserRepository(){

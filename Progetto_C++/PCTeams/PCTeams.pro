@@ -12,6 +12,7 @@ SOURCES += \
     $$PWD/loginform/loginform.cpp \
     $$PWD/user/userrepository.cpp \
     team/team.cpp \
+    team/teamrepository.cpp \
     user/administrator.cpp \
     user/foreman.cpp \
     user/user.cpp \
@@ -24,6 +25,7 @@ HEADERS += \
     $$PWD/loginform/loginform.h \
     $$PWD/mainwindow/mainwindow.h \
     team/team.h \
+    team/teamrepository.h \
     user/administrator.h \
     user/foreman.h \
     user/user.h \
@@ -40,3 +42,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     resources.qrc
+
+QT += positioning
