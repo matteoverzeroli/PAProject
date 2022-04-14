@@ -11,3 +11,8 @@ Foreman::Foreman()
 {
 
 }
+
+void Foreman::initializeMainWindow(Ui::MainWindow *ui)
+{
+    Volunteer::initializeMainWindow(ui);
+}

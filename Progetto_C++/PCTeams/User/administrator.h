@@ -11,6 +11,8 @@ public:
     virtual ~Administrator(){
         std::cout<< "delete admin \n";
     };
+
+    virtual void initializeMainWindow(Ui::MainWindow* ui);
 };
 
 #endif // ADMINISTRATOR_H

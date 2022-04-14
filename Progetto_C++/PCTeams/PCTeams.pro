@@ -11,6 +11,8 @@ CONFIG += c++11
 SOURCES += \
     $$PWD/loginform/loginform.cpp \
     $$PWD/user/userrepository.cpp \
+    operation/operation.cpp \
+    operation/operationrepository.cpp \
     team/team.cpp \
     team/teamrepository.cpp \
     user/administrator.cpp \
@@ -24,6 +26,8 @@ HEADERS += \
     $$PWD/user/userrepository.h \
     $$PWD/loginform/loginform.h \
     $$PWD/mainwindow/mainwindow.h \
+    operation/operation.h \
+    operation/operationrepository.h \
     team/team.h \
     team/teamrepository.h \
     user/administrator.h \

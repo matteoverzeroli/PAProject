@@ -14,7 +14,6 @@ public:
     bool removeTeam(int idteam);
 
     ~TeamRepository();
-
 private:
     std::map<int, std::shared_ptr<Team>> teamtable;
     static TeamRepository* instance;

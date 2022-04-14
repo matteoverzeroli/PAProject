@@ -211,8 +211,9 @@
         <height>0</height>
        </size>
       </property>
-      <widget class="QWidget" name="page"/>
-      <widget class="QWidget" name="page_2"/>
+      <widget class="QWidget" name="page_admin"/>
+      <widget class="QWidget" name="page_volunteer"/>
+      <widget class="QWidget" name="page_foreman"/>
      </widget>
     </item>
    </layout>

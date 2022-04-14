@@ -12,6 +12,8 @@ public:
     virtual ~Foreman(){
         std::cout << "delete foreman\n";
     }
+
+    virtual void initializeMainWindow(Ui::MainWindow* ui);
 };
 
 #endif // FOREMAN_H
