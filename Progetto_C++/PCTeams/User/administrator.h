@@ -13,6 +13,7 @@ public:
     };
 
     virtual void initializeMainWindow(Ui::MainWindow* ui);
+    virtual void addNewUser(User* user);
 };
 
 #endif // ADMINISTRATOR_H

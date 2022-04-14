@@ -20,7 +20,15 @@ public:
 
     void inizializeMainWindowsUi(std::shared_ptr<User> user);
 
+private slots:
+    void on_pushButton_newuser_clicked();
+
+    void on_pushButton_nu_adduser_clicked();
+
+    void on_radioButton_nu_volunteer_toggled(bool checked);
+
 private:
     Ui::MainWindow *ui;
+    std::shared_ptr<User> currentuser;
 };
 #endif // MAINWINDOW_H

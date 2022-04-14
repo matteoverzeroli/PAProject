@@ -6,16 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>866</width>
-    <height>641</height>
+    <width>1029</width>
+    <height>825</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
      <layout class="QFormLayout" name="formLayout">
       <property name="formAlignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -203,7 +203,200 @@
       </item>
      </layout>
     </item>
-    <item>
+    <item row="1" column="1">
+     <widget class="QStackedWidget" name="stackedWidget_info">
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="page_blank"/>
+      <widget class="QWidget" name="page_newuser">
+       <layout class="QFormLayout" name="formLayout_2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>Nome:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="lineEdit_nu_name"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>Cognome:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_13">
+          <property name="text">
+           <string>Data di nascita:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_14">
+          <property name="text">
+           <string>Email:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_16">
+          <property name="text">
+           <string>Cellulare:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_18">
+          <property name="text">
+           <string>Sesso:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="lineEdit_nu_surname"/>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLineEdit" name="lineEdit_nu_email"/>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLineEdit" name="lineEdit_nu_cellnumber"/>
+        </item>
+        <item row="3" column="1">
+         <widget class="QDateEdit" name="dateEdit_nu_birthday"/>
+        </item>
+        <item row="6" column="1">
+         <widget class="QGroupBox" name="groupBox_sex">
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QRadioButton" name="radioButton_nu_M">
+             <property name="text">
+              <string>Maschio</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="radioButton_nu_F">
+             <property name="text">
+              <string>Femmina</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="label_19">
+          <property name="text">
+           <string>Ruolo:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1">
+         <widget class="QGroupBox" name="groupBox_role">
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QRadioButton" name="radioButton_nu_admin">
+             <property name="text">
+              <string>Amministratore</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="radioButton_nu_volunteer">
+             <property name="text">
+              <string>Volontario</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="radioButton_nu_foreman">
+             <property name="text">
+              <string>Caposquadra</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="8" column="0">
+         <widget class="QLabel" name="label_nu_team">
+          <property name="text">
+           <string>Squadra:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1">
+         <widget class="QComboBox" name="comboBox_nu_team"/>
+        </item>
+        <item row="9" column="1">
+         <widget class="QPushButton" name="pushButton_nu_adduser">
+          <property name="text">
+           <string>Aggiungi utente</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_23">
+          <property name="text">
+           <string>Password:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="lineEdit_nu_psw"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_deleteuser">
+       <layout class="QFormLayout" name="formLayout_3">
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_21">
+          <property name="text">
+           <string>Squadra:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QComboBox" name="comboBox_du_team"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_22">
+          <property name="text">
+           <string>Utenti:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QListWidget" name="listWidget_user"/>
+        </item>
+        <item row="4" column="1">
+         <widget class="QPushButton" name="pushButton_du_deleteuser">
+          <property name="text">
+           <string>Cancella utente</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item row="0" column="1">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="minimumSize">
        <size>
@@ -211,7 +404,34 @@
         <height>0</height>
        </size>
       </property>
-      <widget class="QWidget" name="page_admin"/>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="page_admin">
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QPushButton" name="pushButton_newuser">
+          <property name="text">
+           <string>Aggiungi un utente</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
+           <string>Cancella un utente</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="pushButton_3">
+          <property name="text">
+           <string>Visualizza utenti</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
       <widget class="QWidget" name="page_volunteer"/>
       <widget class="QWidget" name="page_foreman"/>
      </widget>
@@ -223,7 +443,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>866</width>
+     <width>1029</width>
      <height>26</height>
     </rect>
    </property>

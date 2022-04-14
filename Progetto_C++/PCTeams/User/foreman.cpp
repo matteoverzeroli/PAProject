@@ -15,4 +15,5 @@ Foreman::Foreman()
 void Foreman::initializeMainWindow(Ui::MainWindow *ui)
 {
     Volunteer::initializeMainWindow(ui);
+    ui->stackedWidget_info->setCurrentIndex(0);
 }

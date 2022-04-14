@@ -3,13 +3,15 @@
 
 #include <memory>
 #include <map>
+#include <vector>
 #include "team/team.h"
 
 class TeamRepository
 {
 public:
     static TeamRepository* getInstance();
-    std::shared_ptr<Team> getUserById(int idteam);
+    std::shared_ptr<Team> getTeamById(int idteam);
+    std::vector<std::shared_ptr<Team>> getAllTeam();
     void insertTeam(Team* team);
     bool removeTeam(int idteam);
 

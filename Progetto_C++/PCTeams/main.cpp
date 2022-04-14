@@ -7,6 +7,7 @@
 #include "user/foreman.h"
 #include "user/volunteer.h"
 #include "team/team.h"
+#include "team/teamrepository.h"
 
 using namespace std;
 
@@ -20,8 +21,10 @@ int main(int argc, char *argv[])
 
     loginform.show();
 
-    UserRepository::getInstance()->insertUser(new Administrator("pippo","matteo","verzeroli", new QDate(1999,07,18), "matteoverzeroli@live.it", "3407580457", 'm'));
+    TeamRepository::getInstance()->insertTeam(new Team("SVTeam","sovere",new QGeoCoordinate(45.81666564941406,10.033333778381348)));
+
+    UserRepository::getInstance()->insertUser(new Administrator("pippo","matteo","verzeroli", new QDate(1999,07,18), "matteoverzeroli@live.it", "3407580457", 'M'));
     UserRepository::getInstance()->insertUser(new Foreman("pippo","Luca","verzeroli", new QDate(1999,07,18), "matteoverzeroli@live.it",
-                                                          "3407580457", 'm', new Team("SVTeam","sovere",new QGeoCoordinate(45.81666564941406,10.033333778381348))));
+                                                          "3407580457", 'M',TeamRepository::getInstance()->getTeamById(0).get()));
     return a.exec();
 }

@@ -1,4 +1,5 @@
-#include "teamrepository.h"
+#include "team/teamrepository.h"
+#include "helpers.h"
 
 TeamRepository* TeamRepository::instance = 0;
 
@@ -14,7 +15,7 @@ TeamRepository* TeamRepository::getInstance(){
     return instance;
 }
 
-std::shared_ptr<Team> TeamRepository::getUserById(int idteam)
+std::shared_ptr<Team> TeamRepository::getTeamById(int idteam)
 {
     auto it = teamtable.find(idteam);
     if(it != teamtable.end()){
@@ -23,6 +24,11 @@ std::shared_ptr<Team> TeamRepository::getUserById(int idteam)
     else{
         return std::shared_ptr<Team>(nullptr);
     }
+}
+
+std::vector<std::shared_ptr<Team>> TeamRepository::getAllTeam()
+{
+    return Helpers::extract_values_from_map(teamtable);
 }
 
 void TeamRepository::insertTeam(Team *team)

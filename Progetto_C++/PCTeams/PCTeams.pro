@@ -1,6 +1,6 @@
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets quickwidgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
 
@@ -26,6 +26,7 @@ HEADERS += \
     $$PWD/user/userrepository.h \
     $$PWD/loginform/loginform.h \
     $$PWD/mainwindow/mainwindow.h \
+    helpers.h \
     operation/operation.h \
     operation/operationrepository.h \
     team/team.h \
