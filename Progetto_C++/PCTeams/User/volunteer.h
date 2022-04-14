@@ -15,8 +15,11 @@ public:
         delete birthday;
         std:: cout << "delete volunteer\n";
     }
+
     Team *getTeam() const;
     void setTeam(Team *newTeam);
+
+    virtual void initializeMainWindow(Ui::MainWindow* ui);
 
 protected:
     Team* team;

@@ -82,6 +82,17 @@ void User::setSex(const QChar &newSex)
     sex = newSex;
 }
 
+void User::initializeMainWindow(Ui::MainWindow* ui)
+{
+    ui->label_id->setText(QString::number(this->getIduser()));
+    ui->label_name->setText(this->getName());
+    ui->label_surname->setText(this->getSurname());
+    ui->label_birthday->setText(this->getBirthday()->toString("dd/MM/yyyy"));
+    ui->label_email->setText(this->getEmail());
+    ui->label_cellnumber->setText(this->getCellnumber());
+    ui->label_sex->setText(this->getSex());
+}
+
 User::User(const QString &password, const QString &name, const QString &surname, QDate *birthday, const QString &email, const QString &cellnumber, const QChar &sex) :
     iduser(idprog++),
     password(password),

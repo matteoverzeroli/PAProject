@@ -20,18 +20,8 @@ int main(int argc, char *argv[])
 
     loginform.show();
 
-    QDate data (1999,07,18);
-    User user("pippo","matteo","verzeroli", new QDate(1999,07,18), "matteoverzeroli@live.it", "3407580457", 'm');
-
-    Foreman foreman("pippo","Luca","verzeroli", new QDate(1999,07,18), "matteoverzeroli@live.it", "3407580457", 'm');
-
-    Team* team = new Team("SVTeam","sovere",new QGeoCoordinate(45.81666564941406,45.81666564941406));
-
-
-    UserRepository::getInstance()->insertUser(new User(user));
-    UserRepository::getInstance()->insertUser(new Foreman(foreman));
-
-    cout<<"fine\n";
-
+    UserRepository::getInstance()->insertUser(new Administrator("pippo","matteo","verzeroli", new QDate(1999,07,18), "matteoverzeroli@live.it", "3407580457", 'm'));
+    UserRepository::getInstance()->insertUser(new Foreman("pippo","Luca","verzeroli", new QDate(1999,07,18), "matteoverzeroli@live.it",
+                                                          "3407580457", 'm', new Team("SVTeam","sovere",new QGeoCoordinate(45.81666564941406,10.033333778381348))));
     return a.exec();
 }

@@ -36,6 +36,7 @@ void LoginForm::on_pushButton_clicked()
 
     if(user != 0 && user->getPassword().compare(password) == 0){
         mainwindow_ref->show();
+        mainwindow_ref->inizializeMainWindowsUi(user);
         this->hide();
     }
     else{

@@ -4,8 +4,10 @@
 #include <QString>
 #include <QChar>
 #include <QDate>
+#include <QObject>
 #include "team/team.h"
 #include <iostream>
+#include "ui_mainwindow.h"
 
 class User
 {
@@ -32,6 +34,8 @@ public:
     void setCellnumber(const QString &newCellnumber);
     const QChar &getSex() const;
     void setSex(const QChar &newSex);
+
+    virtual void initializeMainWindow(Ui::MainWindow* ui);
 
 protected:
     int iduser;
