@@ -27,8 +27,18 @@ private slots:
 
     void on_radioButton_nu_volunteer_toggled(bool checked);
 
+    void on_radioButton_nu_foreman_toggled(bool checked);
+
+    void on_actionLogout_triggered();
+
+    void on_pushButton_showuser_clicked();
+
+signals:
+    void logout();
+
 private:
     Ui::MainWindow *ui;
     std::shared_ptr<User> currentuser;
+
 };
 #endif // MAINWINDOW_H

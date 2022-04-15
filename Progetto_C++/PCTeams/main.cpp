@@ -22,9 +22,10 @@ int main(int argc, char *argv[])
     loginform.show();
 
     TeamRepository::getInstance()->insertTeam(new Team("SVTeam","sovere",new QGeoCoordinate(45.81666564941406,10.033333778381348)));
+    TeamRepository::getInstance()->insertTeam(new Team("BGTeam","bergamo",new QGeoCoordinate(45.81666564941234,10.033333778386548)));
 
     UserRepository::getInstance()->insertUser(new Administrator("pippo","matteo","verzeroli", new QDate(1999,07,18), "matteoverzeroli@live.it", "3407580457", 'M'));
     UserRepository::getInstance()->insertUser(new Foreman("pippo","Luca","verzeroli", new QDate(1999,07,18), "matteoverzeroli@live.it",
-                                                          "3407580457", 'M',TeamRepository::getInstance()->getTeamById(0).get()));
+                                                          "3407580457", 'M',TeamRepository::getInstance()->getTeamById(0)));
     return a.exec();
 }

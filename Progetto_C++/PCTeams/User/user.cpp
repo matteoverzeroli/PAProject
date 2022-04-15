@@ -93,6 +93,12 @@ void User::initializeMainWindow(Ui::MainWindow* ui)
     ui->label_sex->setText(this->getSex());
 }
 
+QString User::toString()
+{
+    return QString(QString::number(iduser) + " " + name + " " + surname + " " + birthday->toString("dd/MM/yyyy") + " " +
+                   email + " " + cellnumber + " " + sex);
+}
+
 User::User(const QString &password, const QString &name, const QString &surname, QDate *birthday, const QString &email, const QString &cellnumber, const QChar &sex) :
     iduser(idprog++),
     password(password),

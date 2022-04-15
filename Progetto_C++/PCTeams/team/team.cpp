@@ -52,3 +52,8 @@ void Team::setCoordinate(QGeoCoordinate *newCoordinate)
 {
     coordinate = newCoordinate;
 }
+
+QString Team::toString()
+{
+    return QString::number(idteam) + " " + name + " " + areaname + " " + coordinate->toString();
+}

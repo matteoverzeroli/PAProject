@@ -20,6 +20,9 @@ LoginForm::LoginForm(QWidget *parent, MainWindow* mainwindow) :
     ui->label_pic->setPixmap(pix.scaled(ui->label_pic->width(),ui->label_pic->height(), Qt::KeepAspectRatio));
 
     mainwindow_ref = mainwindow;
+
+    connect(mainwindow,SIGNAL(logout()),this,SLOT(logout()));
+
 }
 
 LoginForm::~LoginForm()
@@ -46,3 +49,11 @@ void LoginForm::on_pushButton_clicked()
     }
 }
 
+void LoginForm::logout()
+{
+    mainwindow_ref->hide();
+    ui->lineEdit_password->clear();
+    ui->lineEdit_userid->clear();
+    ui->label_error->clear();
+    this->show();
+}

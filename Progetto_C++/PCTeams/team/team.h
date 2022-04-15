@@ -23,6 +23,8 @@ public:
     const QGeoCoordinate* getCoordinate() const;
     void setCoordinate(QGeoCoordinate *newCoordinate);
 
+    QString toString();
+
 private:
     static int idprog; // numero progessivo team
 

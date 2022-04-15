@@ -18,8 +18,9 @@ public:
 
 private slots:
     void on_pushButton_clicked();
+    void logout();
 
-private:
+ private:
     Ui::LoginForm *ui;
     MainWindow* mainwindow_ref;
 };

@@ -36,6 +36,7 @@ public:
     void setSex(const QChar &newSex);
 
     virtual void initializeMainWindow(Ui::MainWindow* ui);
+    virtual QString toString();
 
 protected:
     int iduser;

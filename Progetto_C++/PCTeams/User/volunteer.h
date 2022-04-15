@@ -3,26 +3,27 @@
 
 #include "user/user.h"
 #include "team/team.h"
+#include <memory>
 
 class Volunteer : virtual public User
 {
 public:
-    Volunteer(const QString &password, const QString &name, const QString &surname, QDate *birthday, const QString &email, const QString &cellnumber, const QChar &sex, Team *team = nullptr);
+    Volunteer(const QString &password, const QString &name, const QString &surname, QDate *birthday, const QString &email, const QString &cellnumber, const QChar &sex, std::shared_ptr<Team> team = std::shared_ptr<Team>(nullptr));
     Volunteer();
 
     virtual ~Volunteer(){
-        delete team;
         delete birthday;
         std:: cout << "delete volunteer\n";
     }
 
-    Team *getTeam() const;
-    void setTeam(Team *newTeam);
+    std::shared_ptr<Team> getTeam() const;
+    void setTeam(std::shared_ptr<Team> newTeam);
 
     virtual void initializeMainWindow(Ui::MainWindow* ui);
+    virtual QString toString();
 
 protected:
-    Team* team;
+    std::shared_ptr<Team> team;
 };
 
 #endif // VOLUNTEER_H

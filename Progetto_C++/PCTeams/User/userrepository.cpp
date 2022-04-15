@@ -2,6 +2,7 @@
 #include <QString>
 #include <memory>
 #include <iostream>
+#include "helpers.h"
 
 UserRepository* UserRepository::instance = 0;
 
@@ -24,6 +25,11 @@ std::shared_ptr<User> UserRepository::getUserById(int iduser){
     else{
         return std::shared_ptr<User>(nullptr);
     }
+}
+
+std::vector<std::shared_ptr<User> > UserRepository::getAllUser()
+{
+    return Helpers::extract_values_from_map(usertable);
 }
 
 void UserRepository::insertUser(User* user){
