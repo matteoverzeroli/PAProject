@@ -33,12 +33,21 @@ private slots:
 
     void on_pushButton_showuser_clicked();
 
+    void on_pushButton_deleteuser_clicked();
+
+    void on_comboBox_du_team_currentTextChanged(const QString &arg1);
+
+    void on_pushButton_du_deleteuser_clicked();
+
 signals:
     void logout();
 
 private:
     Ui::MainWindow *ui;
     std::shared_ptr<User> currentuser;
+
+    bool nullNewUserAttribute();
+    void clearNewUserAttribute();
 
 };
 #endif // MAINWINDOW_H

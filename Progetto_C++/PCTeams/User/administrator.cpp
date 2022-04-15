@@ -3,6 +3,7 @@
 #include "user/userrepository.h"
 #include "user/foreman.h"
 #include "team/teamrepository.h"
+#include <QString>
 
 Administrator::Administrator(const QString &password, const QString &name, const QString &surname, QDate *birthday, const QString &email, const QString &cellnumber, const QChar &sex) : User(password, name, surname, birthday, email, cellnumber, sex)
 {}
@@ -49,4 +50,43 @@ void Administrator::populateComboBoxTeams(QComboBox *comboBox, bool isForeman)
         comboBox->addItem(QString::number((*it)->getIdteam()) + " " + (*it)->getName());
     }
 
+}
+
+void Administrator::populateListBoxUsers(QListWidget *listWidget, int idteam) //-1 seleziona gli amministratori
+{
+    QString result;
+
+    auto users = UserRepository::getInstance()->getAllUser();
+
+    for(auto it = users.begin(); it != users.end(); ++it){
+
+        std::shared_ptr<Foreman> foreman =
+                       std::dynamic_pointer_cast<Foreman> (*it);
+        if(foreman != nullptr){
+            result = (idteam == foreman->getTeam()->getIdteam()) ? foreman->toString() : "";
+        }
+        else{
+            std::shared_ptr<Administrator> admin =
+                           std::dynamic_pointer_cast<Administrator> (*it);
+            if(admin != nullptr && idteam == -1){
+                result = admin->toString();
+            }
+            else{
+                std::shared_ptr<Volunteer> volunteer =
+                               std::dynamic_pointer_cast<Volunteer> (*it);
+                if(volunteer != nullptr){
+                    result = (idteam == volunteer->getTeam()->getIdteam()) ? volunteer->toString() : "";
+                }
+            }
+        }
+
+        if(!result.isEmpty()){
+            listWidget->addItem(result);
+        }
+    }
+}
+
+void Administrator::deleteUser(int iduser)
+{
+    UserRepository::getInstance()->removeUser(iduser);
 }

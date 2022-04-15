@@ -17,6 +17,8 @@ public:
     virtual void addNewUser(User* user);
     virtual void addNewUser(Volunteer* volunteer, int idteam);
     virtual void populateComboBoxTeams(QComboBox* comboBox, bool isForeman);
+    virtual void populateListBoxUsers(QListWidget* listWidget, int idteam = -1);
+    virtual void deleteUser(int iduser);
 };
 
 #endif // ADMINISTRATOR_H

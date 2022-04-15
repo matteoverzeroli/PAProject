@@ -38,6 +38,7 @@ public:
     virtual void initializeMainWindow(Ui::MainWindow* ui);
     virtual QString toString();
 
+
 protected:
     int iduser;
     QString password;
