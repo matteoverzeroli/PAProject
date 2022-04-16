@@ -7,18 +7,33 @@ Operation::Operation()
 
 }
 
-Operation::Operation(const QString &address, QGeoCoordinate *coordinate, const QString &petitioner, const QString &cellnumber, COLOR color, int idforeman, QDateTime *starttime, QDateTime *finishtime) :
+Operation::Operation(const QString &name, const QString &address, QGeoCoordinate *coordinate, const QString &petitioner, const QString &cellnumber, COLOR color, const std::shared_ptr<User> &leader, const std::shared_ptr<Team> &team, QDateTime *starttime, QDateTime *finishtime) :
     idoperation(idprog++),
+    name(name),
     address(address),
     coordinate(coordinate),
     petitioner(petitioner),
     cellnumber(cellnumber),
     color(color),
-    idforeman(idforeman),
+    leader(leader),
+    team(team),
     starttime(starttime),
     finishtime(finishtime)
+{}
+
+int Operation::getIdoperation() const
 {
-    partecipants = std::vector<std::shared_ptr<Volunteer>>();
+    return idoperation;
+}
+
+const QString &Operation::getName() const
+{
+    return name;
+}
+
+void Operation::setName(const QString &newName)
+{
+    name = newName;
 }
 
 const QString &Operation::getAddress() const
@@ -71,14 +86,24 @@ void Operation::setColor(COLOR newColor)
     color = newColor;
 }
 
-int Operation::getIdforeman() const
+const std::shared_ptr<User> &Operation::getLeader() const
 {
-    return idforeman;
+    return leader;
 }
 
-void Operation::setIdforeman(int newIdforeman)
+void Operation::setLeader(const std::shared_ptr<User> &newLeader)
 {
-    idforeman = newIdforeman;
+    leader = newLeader;
+}
+
+const std::shared_ptr<Team> &Operation::getTeam() const
+{
+    return team;
+}
+
+void Operation::setTeam(const std::shared_ptr<Team> &newTeam)
+{
+    team = newTeam;
 }
 
 QDateTime *Operation::getStarttime() const
@@ -99,19 +124,4 @@ QDateTime *Operation::getFinishtime() const
 void Operation::setFinishtime(QDateTime *newFinishtime)
 {
     finishtime = newFinishtime;
-}
-
-const std::vector<std::shared_ptr<Volunteer> > &Operation::getPartecipants() const
-{
-    return partecipants;
-}
-
-void Operation::setPartecipants(const std::vector<std::shared_ptr<Volunteer> > &newPartecipants)
-{
-    partecipants = newPartecipants;
-}
-
-int Operation::getIdoperation() const
-{
-    return idoperation;
 }

@@ -246,3 +246,28 @@ void MainWindow::on_pushButton_du_deleteuser_clicked()
     }
 }
 
+
+void MainWindow::on_pushButton_operation_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+
+void MainWindow::on_pushButton_op_add_clicked()
+{
+    ui->lineEdit_op_name->clear();
+    ui->lineEdit_op_address->clear();
+    ui->lineEdit_op_lat->clear();
+    ui->lineEdit_op_lng->clear();
+    ui->lineEdit_op_petitioner->clear();
+    ui->dateTimeEdit_op_start->clear();
+    ui->dateTimeEdit_op_stop->clear();
+    ui->stackedWidget_info->setCurrentIndex(3);
+}
+
+
+void MainWindow::on_pushButton_op_newop_clicked()
+{
+    ui->stackedWidget_info->setCurrentIndex(4);
+}
+

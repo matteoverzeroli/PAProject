@@ -39,6 +39,12 @@ private slots:
 
     void on_pushButton_du_deleteuser_clicked();
 
+    void on_pushButton_operation_clicked();
+
+    void on_pushButton_op_add_clicked();
+
+    void on_pushButton_op_newop_clicked();
+
 signals:
     void logout();
 
