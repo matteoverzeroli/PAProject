@@ -1,4 +1,6 @@
 #include "volunteer.h"
+#include "operation/operationrepository.h"
+#include "operation/operation.h"
 
 Volunteer::Volunteer(const QString &password, const QString &name, const QString &surname, QDate *birthday, const QString &email, const QString &cellnumber, const QChar &sex, std::shared_ptr<Team> team) : User(password, name, surname, birthday, email, cellnumber, sex),
     team(team)
@@ -31,6 +33,22 @@ void Volunteer::initializeMainWindow(Ui::MainWindow *ui)
     ui->label_team->show();
     ui->formWidget_team->show();
 
+}
+/**
+ * Il volontario potrà visualizzare solamente gli interventi della propria squadra
+ *
+ * @brief Volunteer::populateOperationList
+ * @param ui
+ */
+
+void Volunteer::populateOperationList(QListWidget *oplist, const QDate &date)
+{
+    oplist->clear();
+
+    auto operations = OperationRepository::getInstance()->getAllOperation(team->getIdteam(), date);
+    for(auto it = operations.begin(); it != operations.end(); ++it){
+        oplist->addItem((*it)->toString());
+    }
 }
 
 QString Volunteer::toString()

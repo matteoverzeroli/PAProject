@@ -45,6 +45,10 @@ private slots:
 
     void on_pushButton_op_newop_clicked();
 
+    void on_commandLinkButton_clicked();
+
+    void on_calendarWidget_clicked(const QDate &date);
+
 signals:
     void logout();
 

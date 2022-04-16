@@ -20,6 +20,7 @@ public:
     void setTeam(std::shared_ptr<Team> newTeam);
 
     virtual void initializeMainWindow(Ui::MainWindow* ui);
+    virtual void populateOperationList(QListWidget *list, const QDate &date);
     virtual QString toString();
 
 protected:

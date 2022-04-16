@@ -9,11 +9,10 @@
 #include "user/foreman.h"
 #include "team/team.h"
 
-
-enum class COLOR : char{
-    RED = 'R',
-    ORANGE = 'O',
-    GREEN = 'G'
+enum class COLOR {
+    RED,
+    ORANGE,
+    GREEN
 };
 
 class Operation
@@ -21,6 +20,8 @@ class Operation
 public:
     Operation();
     Operation(const QString &name, const QString &address, QGeoCoordinate *coordinate, const QString &petitioner, const QString &cellnumber, COLOR color, const std::shared_ptr<User> &leader, const std::shared_ptr<Team> &team, QDateTime *starttime, QDateTime *finishtime);
+
+    QString toString();
 
     ~Operation(){
         delete coordinate;
@@ -64,6 +65,8 @@ private:
     QDateTime* starttime;
     QDateTime* finishtime;
     //TODO add report reference
+
+    const QString colorToString(COLOR c);
 };
 
 #endif // OPERATION_H

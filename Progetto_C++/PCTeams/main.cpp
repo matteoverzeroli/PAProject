@@ -8,6 +8,8 @@
 #include "user/volunteer.h"
 #include "team/team.h"
 #include "team/teamrepository.h"
+#include "operation/operationrepository.h"
+#include "operation/operation.h"
 
 using namespace std;
 
@@ -27,5 +29,20 @@ int main(int argc, char *argv[])
     UserRepository::getInstance()->insertUser(new Administrator("pippo","matteo","verzeroli", new QDate(1999,07,18), "matteoverzeroli@live.it", "3407580457", 'M'));
     UserRepository::getInstance()->insertUser(new Foreman("pippo","Luca","verzeroli", new QDate(1999,07,18), "matteoverzeroli@live.it",
                                                           "3407580457", 'M',TeamRepository::getInstance()->getTeamById(0)));
+
+    OperationRepository::getInstance()->insertOperation(new Operation("Sistemazione valle","Via Giuseppe Verdi",
+                                                                      new QGeoCoordinate(45.81666564941406,10.033333778381348),
+                                                                      "Gianni Floreale","340589613", COLOR::GREEN,
+                                                                      UserRepository::getInstance()->getUserById(1000),
+                                                                      TeamRepository::getInstance()->getTeamById(0),
+                                                                      new QDateTime(QDateTime::currentDateTime()),
+                                                                      new QDateTime(QDateTime::currentDateTime())));
+    OperationRepository::getInstance()->insertOperation(new Operation("Sistemazione valle","Via Giuseppe Verdi",
+                                                                      new QGeoCoordinate(45.81666564941406,10.033333778381348),
+                                                                      "Gianni Floreale","340589613", COLOR::GREEN,
+                                                                      UserRepository::getInstance()->getUserById(1000),
+                                                                      TeamRepository::getInstance()->getTeamById(1),
+                                                                      new QDateTime(QDateTime::currentDateTime()),
+                                                                      new QDateTime(QDateTime::currentDateTime())));
     return a.exec();
 }

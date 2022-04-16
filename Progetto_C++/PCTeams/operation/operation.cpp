@@ -21,6 +21,22 @@ Operation::Operation(const QString &name, const QString &address, QGeoCoordinate
     finishtime(finishtime)
 {}
 
+QString Operation::toString()
+{
+    return  "Intervento n°: " +
+            QString::number(idoperation) + " " +
+            name + " |" + address + " " +
+            coordinate->toString() + " " +
+            starttime->toString("dd/MM/yyyy") + " " +
+            finishtime->toString("dd/MM/yyyy") + " " +
+            "|Richiedente: " + " " + petitioner + " " +
+            cellnumber + " " + colorToString(color) + " " +
+            "|Capo Intervento: " + leader->toString() + " " +
+            "|Squadra: " + team->toString() + " ";
+
+
+}
+
 int Operation::getIdoperation() const
 {
     return idoperation;
@@ -124,4 +140,15 @@ QDateTime *Operation::getFinishtime() const
 void Operation::setFinishtime(QDateTime *newFinishtime)
 {
     finishtime = newFinishtime;
+}
+
+const QString Operation::colorToString(COLOR c)
+{
+    switch (c)
+    {
+        case COLOR::RED:   return QString("ROSSO");
+        case COLOR::ORANGE:   return QString("ARANCIO");
+        case COLOR::GREEN: return QString("VERDE");
+        default : return QString("");
+    }
 }

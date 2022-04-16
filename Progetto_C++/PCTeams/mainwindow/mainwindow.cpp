@@ -26,6 +26,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::inizializeMainWindowsUi(std::shared_ptr<User> user)
 {
+    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget_info->setCurrentIndex(0);
+
     user->initializeMainWindow(ui);
     currentuser = user;
 }
@@ -250,6 +253,9 @@ void MainWindow::on_pushButton_du_deleteuser_clicked()
 void MainWindow::on_pushButton_operation_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget_info->setCurrentIndex(3);
+    ui->listWidget_op->hide();
+    ui->pushButton_op_add->hide();
 }
 
 
@@ -269,5 +275,23 @@ void MainWindow::on_pushButton_op_add_clicked()
 void MainWindow::on_pushButton_op_newop_clicked()
 {
     ui->stackedWidget_info->setCurrentIndex(4);
+}
+
+
+void MainWindow::on_commandLinkButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget_info->setCurrentIndex(0);
+}
+
+
+void MainWindow::on_calendarWidget_clicked(const QDate &date)
+{
+    ui->listWidget_op->show();
+    ui->pushButton_op_add->show();
+
+    std::shared_ptr<Volunteer> volunteer =
+                   std::dynamic_pointer_cast<Volunteer> (currentuser);
+    volunteer->populateOperationList(ui->listWidget_op, date);
 }
 

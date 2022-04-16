@@ -15,6 +15,7 @@ public:
 
     virtual void initializeMainWindow(Ui::MainWindow* ui);
     virtual void populateComboBoxTeams(QComboBox* comboBox, bool isForeman);
+    virtual void populateOperationList(QListWidget *oplist, const QDate &date);
 };
 
 #endif // FOREMAN_H

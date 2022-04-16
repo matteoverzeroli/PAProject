@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <map>
+#include <vector>
 #include <operation/operation.h>
 
 class OperationRepository
@@ -12,6 +13,10 @@ public:
     std::shared_ptr<Operation> getOperationById(int idoperation);
     void insertOperation(Operation* operation);
     bool removeOperation(int idoperation);
+    std::vector<std::shared_ptr<Operation>> getAllOperation();
+    std::vector<std::shared_ptr<Operation>> getAllOperation(const QDate& date);
+    std::vector<std::shared_ptr<Operation>> getAllOperation(int idteam);
+    std::vector<std::shared_ptr<Operation>> getAllOperation(int idteam, const QDate& date);
 
     ~OperationRepository();
 private:
