@@ -8,7 +8,7 @@
 class Volunteer : virtual public User
 {
 public:
-    Volunteer(const QString &password, const QString &name, const QString &surname, QDate *birthday, const QString &email, const QString &cellnumber, const QChar &sex, std::shared_ptr<Team> team = std::shared_ptr<Team>(nullptr));
+    Volunteer(const QString &password, const QString &name, const QString &surname, QDate *birthday, const QString &email, const QString &cellnumber, const QChar &sex, QPixmap* picture, std::shared_ptr<Team> team = std::shared_ptr<Team>(nullptr));
     Volunteer();
 
     virtual ~Volunteer(){

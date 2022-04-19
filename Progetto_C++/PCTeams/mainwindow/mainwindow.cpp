@@ -55,7 +55,7 @@ void MainWindow::on_pushButton_nu_adduser_clicked()
                                                          new QDate(ui->dateEdit_nu_birthday->date()),
                                                          ui->lineEdit_nu_email->text(),
                                                          ui->lineEdit_nu_cellnumber->text(),
-                                                         sex);
+                                                         sex, new QPixmap(ui->lineEdit_pathpic->text()));
             admin->addNewUser(new_admin);
             ui->statusbar->setStyleSheet("color:green");
             ui->statusbar->showMessage("Amministratore " + new_admin->toString() + " aggiunto correttamente!");
@@ -67,12 +67,12 @@ void MainWindow::on_pushButton_nu_adduser_clicked()
                                                      new QDate(ui->dateEdit_nu_birthday->date()),
                                                      ui->lineEdit_nu_email->text(),
                                                      ui->lineEdit_nu_cellnumber->text(),
-                                                     sex);
+                                                     sex, new QPixmap(ui->lineEdit_pathpic->text()));
             admin->addNewUser(new_volunteer, ui->comboBox_nu_team->currentText()
                               .split(" ",Qt::SkipEmptyParts)[0].toInt());
 
             ui->statusbar->setStyleSheet("color:green");
-            ui->statusbar->showMessage("Caposquadra " + new_volunteer->toString() + " aggiunto correttamente!");
+            ui->statusbar->showMessage("Volontario " + new_volunteer->toString() + " aggiunto correttamente!");
         }
         else{
             Foreman* new_foreman = new Foreman(ui->lineEdit_nu_psw->text(),
@@ -81,7 +81,8 @@ void MainWindow::on_pushButton_nu_adduser_clicked()
                                                      new QDate(ui->dateEdit_nu_birthday->date()),
                                                      ui->lineEdit_nu_email->text(),
                                                      ui->lineEdit_nu_cellnumber->text(),
-                                                     sex);
+                                                     sex, new QPixmap(ui->lineEdit_pathpic->text()));
+
             admin->addNewUser(new_foreman, ui->comboBox_nu_team->currentText()
                               .split(" ",Qt::SkipEmptyParts)[0].toInt());
 
@@ -230,13 +231,6 @@ void MainWindow::on_pushButton_op_newop_clicked()
 }
 
 
-void MainWindow::on_commandLinkButton_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(0);
-    ui->stackedWidget_info->setCurrentIndex(0);
-}
-
-
 void MainWindow::on_calendarWidget_clicked(const QDate &date)
 {
     ui->listWidget_op->show();
@@ -304,6 +298,7 @@ bool MainWindow::nullNewUserAttribute(){
     return ui->lineEdit_nu_name->text().isEmpty() ||
            ui->lineEdit_nu_surname->text().isEmpty() ||
            ui->lineEdit_nu_email->text().isEmpty() ||
+           ui->lineEdit_pathpic->text().isEmpty() ||
            ui->lineEdit_nu_psw->text().isEmpty() ||
            ui->lineEdit_nu_cellnumber->text().isEmpty();
 }
@@ -335,6 +330,7 @@ void MainWindow::clearNewUserAttribute(){
     ui->dateEdit_nu_birthday->clear();
     ui->lineEdit_nu_email->clear();
     ui->lineEdit_nu_psw->clear();
+    ui->lineEdit_pathpic->clear();
     ui->lineEdit_nu_cellnumber->clear();
     ui->radioButton_nu_admin->setChecked(1);
 }
@@ -356,21 +352,28 @@ void MainWindow::clearNewOperationAttribute(){
     ui->dateTimeEdit_op_stop->clear();
 }
 
-void MainWindow::on_commandLinkButton_2_clicked()
+void MainWindow::on_commandLinkButton_home_2_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
     ui->stackedWidget_info->setCurrentIndex(0);
 }
 
 
-void MainWindow::on_commandLinkButton_3_clicked()
+void MainWindow::on_commandLinkButton_home_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
     ui->stackedWidget_info->setCurrentIndex(0);
 }
 
 
-void MainWindow::on_commandLinkButton_4_clicked()
+void MainWindow::on_commandLinkButton_home_3_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget_info->setCurrentIndex(0);
+}
+
+
+void MainWindow::on_commandLinkButton_home_4_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
     ui->stackedWidget_info->setCurrentIndex(0);

@@ -26,12 +26,15 @@ int main(int argc, char *argv[])
     TeamRepository::getInstance()->insertTeam(new Team("SVTeam","sovere",new QGeoCoordinate(45.81666564941406,10.033333778381348)));
     TeamRepository::getInstance()->insertTeam(new Team("BGTeam","bergamo",new QGeoCoordinate(45.81666564941234,10.033333778386548)));
 
-    UserRepository::getInstance()->insertUser(new Administrator("pippo","matteo","verzeroli", new QDate(1999,07,18), "matteoverzeroli@live.it", "3407580457", 'M'));
+    UserRepository::getInstance()->insertUser(new Administrator("pippo","matteo","verzeroli", new QDate(1999,07,18), "matteoverzeroli@live.it", "3407580457", 'M',
+                                                                new QPixmap("C:/Users/Matteo Verzeroli/Desktop/PA Project/Progetto_C++/PCTeams/img/avatar.png")));
     UserRepository::getInstance()->insertUser(new Foreman("pippo","Luca","verzeroli", new QDate(1999,07,18), "matteoverzeroli@live.it",
-                                                          "3407580457", 'M',TeamRepository::getInstance()->getTeamById(0)));
+                                                          "3407580457", 'M', new QPixmap("C:/Users/Matteo Verzeroli/Desktop/PA Project/Progetto_C++/PCTeams/img/avatar.png"),
+                                                          TeamRepository::getInstance()->getTeamById(0)));
 
     UserRepository::getInstance()->insertUser(new Volunteer("pippo","Arnaldo","Rossi", new QDate(1999,6,5),"arna@gmail.com","365985633",
-                                                            'M',TeamRepository::getInstance()->getTeamById(0)));
+                                                            'M',new QPixmap("C:/Users/Matteo Verzeroli/Desktop/PA Project/Progetto_C++/PCTeams/img/avatar.png"),
+                                                            TeamRepository::getInstance()->getTeamById(0)));
 
     OperationRepository::getInstance()->insertOperation(new Operation("Sistemazione valle","Via Giuseppe Verdi",
                                                                       new QGeoCoordinate(45.81666564941406,10.033333778381348),

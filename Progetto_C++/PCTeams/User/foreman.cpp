@@ -3,10 +3,10 @@
 #include "user/userrepository.h"
 
 Foreman::Foreman(const QString &password, const QString &name, const QString &surname,
-                 QDate *birthday, const QString &email, const QString &cellnumber, const QChar &sex, std::shared_ptr<Team> team) :
-    User(password, name, surname, birthday, email, cellnumber, sex),
-    Administrator(password, name, surname, birthday, email, cellnumber, sex),
-    Volunteer(password, name, surname, birthday, email, cellnumber, sex, team)
+                 QDate *birthday, const QString &email, const QString &cellnumber, const QChar &sex, QPixmap* picture, std::shared_ptr<Team> team) :
+    User(password, name, surname, birthday, email, cellnumber, sex, picture),
+    Administrator(password, name, surname, birthday, email, cellnumber, sex, picture),
+    Volunteer(password, name, surname, birthday, email, cellnumber, sex, picture, team)
 {}
 
 Foreman::Foreman()

@@ -91,6 +91,7 @@ void User::initializeMainWindow(Ui::MainWindow* ui)
     ui->label_email->setText(this->getEmail());
     ui->label_cellnumber->setText(this->getCellnumber());
     ui->label_sex->setText(this->getSex());
+    ui->label_picture->setPixmap(picture->scaled(ui->label_picture->width(),ui->label_picture->height(), Qt::KeepAspectRatio));
 }
 
 QString User::toString()
@@ -99,7 +100,7 @@ QString User::toString()
                    email + " " + cellnumber + " " + sex);
 }
 
-User::User(const QString &password, const QString &name, const QString &surname, QDate *birthday, const QString &email, const QString &cellnumber, const QChar &sex) :
+User::User(const QString &password, const QString &name, const QString &surname, QDate *birthday, const QString &email, const QString &cellnumber, const QChar &sex, QPixmap* picture) :
     iduser(idprog++),
     password(password),
     name(name),
@@ -107,7 +108,8 @@ User::User(const QString &password, const QString &name, const QString &surname,
     birthday(birthday),
     email(email),
     cellnumber(cellnumber),
-    sex(sex)
+    sex(sex),
+    picture(picture)
 {}
 
 User::User()

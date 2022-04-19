@@ -12,9 +12,10 @@
 class User
 {
 public:
-    User(const QString &password, const QString &name, const QString &surname, QDate *birthday, const QString &email, const QString &cellnumber, const QChar &sex);
+    User(const QString &password, const QString &name, const QString &surname, QDate *birthday, const QString &email, const QString &cellnumber, const QChar &sex, QPixmap* picture);
     virtual ~User(){
         std::cout << "delete user\n";
+        delete picture;
     }
     User();
 
@@ -48,6 +49,7 @@ protected:
     QString email;
     QString cellnumber;
     QChar sex;
+    QPixmap* picture;
 
 private:
     static int idprog; // numero progessivo utente

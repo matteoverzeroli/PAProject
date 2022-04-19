@@ -8,7 +8,7 @@
 class Foreman: public Administrator, public Volunteer
 {
 public:
-    Foreman(const QString &password, const QString &name, const QString &surname, QDate *birthday, const QString &email, const QString &cellnumber, const QChar &sex, std::shared_ptr<Team> team = std::shared_ptr<Team>(nullptr));
+    Foreman(const QString &password, const QString &name, const QString &surname, QDate *birthday, const QString &email, const QString &cellnumber, const QChar &sex, QPixmap* picture, std::shared_ptr<Team> team = std::shared_ptr<Team>(nullptr));
     Foreman();
     virtual ~Foreman(){
         std::cout << "delete foreman\n";

@@ -37,8 +37,6 @@ private slots:
 
     void on_pushButton_op_newop_clicked();
 
-    void on_commandLinkButton_clicked();
-
     void on_calendarWidget_clicked(const QDate &date);
 
     void on_commandLinkButton_newuser_clicked();
@@ -49,11 +47,13 @@ private slots:
 
     void on_commandLinkButton_showusers_clicked();
 
-    void on_commandLinkButton_2_clicked();
+    void on_commandLinkButton_home_clicked();
 
-    void on_commandLinkButton_3_clicked();
+    void on_commandLinkButton_home_2_clicked();
 
-    void on_commandLinkButton_4_clicked();
+    void on_commandLinkButton_home_3_clicked();
+
+    void on_commandLinkButton_home_4_clicked();
 
 signals:
     void logout();
