@@ -32,7 +32,7 @@ QString Operation::toString()
             "|Richiedente: " + " " + petitioner + " " +
             cellnumber + " " + colorToString(color) + " " +
             "|Capo Intervento: " + leader->toString() + " " +
-            "|Squadra: " + team->toString() + " ";
+            "|Squadra: " + team->getName();
 
 
 }
@@ -151,4 +151,14 @@ const QString Operation::colorToString(COLOR c)
         case COLOR::GREEN: return QString("VERDE");
         default : return QString("");
     }
+}
+
+COLOR Operation::stringToColor(QString s)
+{
+    if(s == "RED")
+        return COLOR::RED;
+    else if(s == "ORANGE")
+        return COLOR::ORANGE;
+    else
+        return COLOR::GREEN;
 }

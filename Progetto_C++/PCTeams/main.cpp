@@ -30,6 +30,9 @@ int main(int argc, char *argv[])
     UserRepository::getInstance()->insertUser(new Foreman("pippo","Luca","verzeroli", new QDate(1999,07,18), "matteoverzeroli@live.it",
                                                           "3407580457", 'M',TeamRepository::getInstance()->getTeamById(0)));
 
+    UserRepository::getInstance()->insertUser(new Volunteer("pippo","Arnaldo","Rossi", new QDate(1999,6,5),"arna@gmail.com","365985633",
+                                                            'M',TeamRepository::getInstance()->getTeamById(0)));
+
     OperationRepository::getInstance()->insertOperation(new Operation("Sistemazione valle","Via Giuseppe Verdi",
                                                                       new QGeoCoordinate(45.81666564941406,10.033333778381348),
                                                                       "Gianni Floreale","340589613", COLOR::GREEN,

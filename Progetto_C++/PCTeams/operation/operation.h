@@ -6,7 +6,7 @@
 #include <QDateTime>
 #include <vector>
 #include <memory>
-#include "user/foreman.h"
+#include "user/user.h"
 #include "team/team.h"
 
 enum class COLOR {
@@ -51,6 +51,9 @@ public:
     QDateTime *getFinishtime() const;
     void setFinishtime(QDateTime *newFinishtime);
 
+    static const QString colorToString(COLOR c);
+    static COLOR stringToColor(QString s);
+
 private:
     static int idprog; // numero progessivo interventi
     int idoperation;
@@ -64,9 +67,7 @@ private:
     std::shared_ptr<Team> team;
     QDateTime* starttime;
     QDateTime* finishtime;
-    //TODO add report reference
-
-    const QString colorToString(COLOR c);
+    //TODO add report reference   
 };
 
 #endif // OPERATION_H

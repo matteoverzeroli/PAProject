@@ -16,7 +16,10 @@ Administrator::Administrator()
 void Administrator::initializeMainWindow(Ui::MainWindow *ui)
 {
     User::initializeMainWindow(ui);
-    ui->stackedWidget_info->setCurrentIndex(0);
+
+    ui->commandLinkButton_deleteuser->show();
+    ui->commandLinkButton_newuser->show();
+    ui->commandLinkButton_showusers->show();
 }
 
 void Administrator::addNewUser(User *user)

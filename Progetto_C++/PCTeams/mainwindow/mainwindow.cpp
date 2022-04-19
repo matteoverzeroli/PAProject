@@ -29,17 +29,14 @@ void MainWindow::inizializeMainWindowsUi(std::shared_ptr<User> user)
     ui->stackedWidget->setCurrentIndex(0);
     ui->stackedWidget_info->setCurrentIndex(0);
 
+    ui->commandLinkButton_deleteuser->hide();
+    ui->commandLinkButton_newuser->hide();
+    ui->commandLinkButton_showusers->hide();
+    ui->pushButton_op_newop->hide();
+
     user->initializeMainWindow(ui);
     currentuser = user;
 }
-
-void MainWindow::on_pushButton_newuser_clicked()
-{
-    ui->stackedWidget_info->setCurrentIndex(1);
-    ui->comboBox_nu_team->hide();
-    ui->label_nu_team->hide();
-}
-
 
 void MainWindow::on_pushButton_nu_adduser_clicked()
 {
@@ -98,34 +95,6 @@ void MainWindow::on_pushButton_nu_adduser_clicked()
         QMessageBox::critical(this, "Errore", "Alcuni campi vuoti!", QMessageBox::Ok);
     }
 }
-/**
- * Verifica che i campi del nuovo utente da inserire non siano vuoti
- *
- * @brief MainWindow::nullNewUserAttribute
- * @return true->esiste un campo vuoto, false-> tutti i campi sono valorizzati
- */
-bool MainWindow::nullNewUserAttribute(){
-    return ui->lineEdit_nu_name->text().isEmpty()&&
-           ui->lineEdit_nu_surname->text().isEmpty() &&
-           ui->lineEdit_nu_email->text().isEmpty() &&
-           ui->lineEdit_nu_psw->text().isEmpty() &&
-           ui->lineEdit_nu_cellnumber->text().isEmpty();
-}
-
-/**
- * Reset campi nuovo utente
- *
- * @brief MainWindow::clearNewUserAttribute
- */
-void MainWindow::clearNewUserAttribute(){
-    ui->lineEdit_nu_name->clear();
-    ui->lineEdit_nu_surname->clear();
-    ui->dateEdit_nu_birthday->clear();
-    ui->lineEdit_nu_email->clear();
-    ui->lineEdit_nu_psw->clear();
-    ui->lineEdit_nu_cellnumber->clear();
-    ui->radioButton_nu_admin->setChecked(1);
-}
 
 void MainWindow::on_radioButton_nu_volunteer_toggled(bool checked)
 {
@@ -174,38 +143,6 @@ void MainWindow::on_actionLogout_triggered()
     emit logout();
 }
 
-
-void MainWindow::on_pushButton_showuser_clicked()
-{
-    ui->comboBox_du_team->clear();
-    ui->listWidget_user->clear();
-    ui->pushButton_du_deleteuser->hide();
-    ui->stackedWidget_info->setCurrentIndex(2);
-
-    std::shared_ptr<Administrator> admin =
-                   std::dynamic_pointer_cast<Administrator> (currentuser);
-
-    ui->comboBox_du_team->addItem("Amministratori");
-    admin->populateComboBoxTeams(ui->comboBox_du_team, false);
-
-    ui->listWidget_user->clear();
-    admin->populateListBoxUsers(ui->listWidget_user);
-}
-
-
-void MainWindow::on_pushButton_deleteuser_clicked()
-{
-    ui->pushButton_du_deleteuser->show();
-    ui->comboBox_du_team->clear();
-
-    ui->stackedWidget_info->setCurrentIndex(2);
-
-    std::shared_ptr<Administrator> admin =
-                   std::dynamic_pointer_cast<Administrator> (currentuser);
-
-    admin->populateComboBoxTeams(ui->comboBox_du_team, false);
-}
-
 void MainWindow::on_comboBox_du_team_currentTextChanged(const QString &text)
 {
     ui->listWidget_user->clear();
@@ -240,7 +177,7 @@ void MainWindow::on_pushButton_du_deleteuser_clicked()
                admin->deleteUser(iduser);
                ui->statusbar->setStyleSheet("color:red");
                ui->statusbar->showMessage("Utente " + QString::number(iduser) + " cancellato!" );
-               on_pushButton_deleteuser_clicked();
+               on_commandLinkButton_deleteuser_clicked();
            }
         }
         else{
@@ -249,32 +186,47 @@ void MainWindow::on_pushButton_du_deleteuser_clicked()
     }
 }
 
-
-void MainWindow::on_pushButton_operation_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(1);
-    ui->stackedWidget_info->setCurrentIndex(3);
-    ui->listWidget_op->hide();
-    ui->pushButton_op_add->hide();
-}
-
-
 void MainWindow::on_pushButton_op_add_clicked()
 {
-    ui->lineEdit_op_name->clear();
-    ui->lineEdit_op_address->clear();
-    ui->lineEdit_op_lat->clear();
-    ui->lineEdit_op_lng->clear();
-    ui->lineEdit_op_petitioner->clear();
-    ui->dateTimeEdit_op_start->clear();
-    ui->dateTimeEdit_op_stop->clear();
-    ui->stackedWidget_info->setCurrentIndex(3);
+    if(!nullNewOperationAttribute()){
+
+        std::shared_ptr<Foreman> foreman =
+                       std::dynamic_pointer_cast<Foreman> (currentuser);
+
+        Operation* new_op = new Operation(ui->lineEdit_op_name->text(),ui->lineEdit_op_address->text(),
+                                        new QGeoCoordinate(ui->lineEdit_op_lat->text().toDouble(),ui->lineEdit_op_lng->text().toDouble()),
+                                        ui->lineEdit_op_petitioner->text(), ui->lineEdit_op_cellnumber->text(),
+                                        Operation::stringToColor(ui->comboBox_op_color->currentText()),
+                                        UserRepository::getInstance()->getUserById((ui->comboBox_op_users->currentText().split(" ",Qt::SkipEmptyParts))[0].toInt()),
+                                        foreman->getTeam(),new QDateTime(ui->dateTimeEdit_op_start->dateTime()),
+                                        new QDateTime(ui->dateTimeEdit_op_stop->dateTime()));
+        foreman->addNewOperation(new_op);
+
+        clearNewOperationAttribute();
+        ui->stackedWidget_info->setCurrentIndex(3);
+
+        ui->statusbar->setStyleSheet("color:green");
+        ui->statusbar->showMessage("Intervento: " + new_op->toString() + " aggiunto correttamente!");
+    }
+    else{
+        QMessageBox::critical(this, "Errore", "Alcuni campi vuoti!", QMessageBox::Ok);
+    }
 }
 
 
 void MainWindow::on_pushButton_op_newop_clicked()
-{
+{   
     ui->stackedWidget_info->setCurrentIndex(4);
+
+    ui->comboBox_op_color->addItem(Operation::colorToString(COLOR::RED));
+    ui->comboBox_op_color->addItem(Operation::colorToString(COLOR::ORANGE));
+    ui->comboBox_op_color->addItem(Operation::colorToString(COLOR::GREEN));
+
+    std::shared_ptr<Foreman> foreman =
+                   std::dynamic_pointer_cast<Foreman> (currentuser);
+
+    foreman->populateComboBoxTeams(ui->comboBox_op_teams, false);
+    foreman->populateVolunteerComboBox(ui->comboBox_op_users);
 }
 
 
@@ -288,10 +240,139 @@ void MainWindow::on_commandLinkButton_clicked()
 void MainWindow::on_calendarWidget_clicked(const QDate &date)
 {
     ui->listWidget_op->show();
-    ui->pushButton_op_add->show();
 
     std::shared_ptr<Volunteer> volunteer =
                    std::dynamic_pointer_cast<Volunteer> (currentuser);
     volunteer->populateOperationList(ui->listWidget_op, date);
+
+    ui->dateTimeEdit_op_start->setDate(ui->calendarWidget->selectedDate());
+    ui->dateTimeEdit_op_stop->setDate(ui->calendarWidget->selectedDate());
+}
+void MainWindow::on_commandLinkButton_newuser_clicked()
+{
+    ui->stackedWidget_info->setCurrentIndex(1);
+    ui->comboBox_nu_team->hide();
+    ui->label_nu_team->hide();
+}
+
+
+void MainWindow::on_commandLinkButton_operation_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget_info->setCurrentIndex(3);
+    ui->listWidget_op->hide();
+}
+
+
+void MainWindow::on_commandLinkButton_deleteuser_clicked()
+{
+    ui->pushButton_du_deleteuser->show();
+    ui->comboBox_du_team->clear();
+
+    ui->stackedWidget_info->setCurrentIndex(2);
+
+    std::shared_ptr<Administrator> admin =
+                   std::dynamic_pointer_cast<Administrator> (currentuser);
+
+    admin->populateComboBoxTeams(ui->comboBox_du_team, false);
+}
+
+void MainWindow::on_commandLinkButton_showusers_clicked()
+{
+    ui->comboBox_du_team->clear();
+    ui->listWidget_user->clear();
+    ui->pushButton_du_deleteuser->hide();
+    ui->stackedWidget_info->setCurrentIndex(2);
+
+    std::shared_ptr<Administrator> admin =
+                   std::dynamic_pointer_cast<Administrator> (currentuser);
+
+    ui->comboBox_du_team->addItem("Amministratori");
+    admin->populateComboBoxTeams(ui->comboBox_du_team, false);
+
+    ui->listWidget_user->clear();
+    admin->populateListBoxUsers(ui->listWidget_user);
+}
+
+/**
+ * Verifica che i campi del nuovo utente da inserire non siano vuoti
+ *
+ * @brief MainWindow::nullNewUserAttribute
+ * @return true->esiste un campo vuoto, false-> tutti i campi sono valorizzati
+ */
+bool MainWindow::nullNewUserAttribute(){
+    return ui->lineEdit_nu_name->text().isEmpty() ||
+           ui->lineEdit_nu_surname->text().isEmpty() ||
+           ui->lineEdit_nu_email->text().isEmpty() ||
+           ui->lineEdit_nu_psw->text().isEmpty() ||
+           ui->lineEdit_nu_cellnumber->text().isEmpty();
+}
+/**
+ * Verifica che i campi del nuovo intervento da inserire non siano vuoti
+ *
+ * @brief MainWindow::nullNewOperationAttribute
+ * @return true->esiste un campo vuoto, false-> tutti i campi sono valorizzati
+ */
+
+bool MainWindow::nullNewOperationAttribute()
+{
+    return ui->lineEdit_op_name->text().isEmpty() ||
+           ui->lineEdit_op_address->text().isEmpty() ||
+           ui->lineEdit_op_lat->text().isEmpty() ||
+           ui->lineEdit_op_lng->text().isEmpty() ||
+           ui->lineEdit_op_petitioner->text().isEmpty() ||
+           ui->lineEdit_op_cellnumber->text().isEmpty();
+}
+
+/**
+ * Reset campi nuovo utente
+ *
+ * @brief MainWindow::clearNewUserAttribute
+ */
+void MainWindow::clearNewUserAttribute(){
+    ui->lineEdit_nu_name->clear();
+    ui->lineEdit_nu_surname->clear();
+    ui->dateEdit_nu_birthday->clear();
+    ui->lineEdit_nu_email->clear();
+    ui->lineEdit_nu_psw->clear();
+    ui->lineEdit_nu_cellnumber->clear();
+    ui->radioButton_nu_admin->setChecked(1);
+}
+
+/**
+ * Reset campi nuovo intervento
+ *
+ * @brief MainWindow::clearNewOperationAttribute
+ */
+
+
+void MainWindow::clearNewOperationAttribute(){
+    ui->lineEdit_op_name->clear();
+    ui->lineEdit_op_address->clear();
+    ui->lineEdit_op_lat->clear();
+    ui->lineEdit_op_lng->clear();
+    ui->lineEdit_op_petitioner->clear();
+    ui->dateTimeEdit_op_start->clear();
+    ui->dateTimeEdit_op_stop->clear();
+}
+
+void MainWindow::on_commandLinkButton_2_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget_info->setCurrentIndex(0);
+}
+
+
+void MainWindow::on_commandLinkButton_3_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget_info->setCurrentIndex(0);
+}
+
+
+void MainWindow::on_commandLinkButton_4_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget_info->setCurrentIndex(0);
 }
 

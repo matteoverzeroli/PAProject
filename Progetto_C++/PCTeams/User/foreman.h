@@ -3,6 +3,7 @@
 
 #include "user/administrator.h"
 #include "user/volunteer.h"
+#include "operation/operation.h"
 
 class Foreman: public Administrator, public Volunteer
 {
@@ -16,6 +17,8 @@ public:
     virtual void initializeMainWindow(Ui::MainWindow* ui);
     virtual void populateComboBoxTeams(QComboBox* comboBox, bool isForeman);
     virtual void populateOperationList(QListWidget *oplist, const QDate &date);
+    void populateVolunteerComboBox(QComboBox *comboBox);
+    void addNewOperation(Operation* newop);
 };
 
 #endif // FOREMAN_H

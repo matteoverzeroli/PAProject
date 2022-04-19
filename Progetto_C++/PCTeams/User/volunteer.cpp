@@ -24,6 +24,7 @@ void Volunteer::setTeam(std::shared_ptr<Team> newTeam)
 void Volunteer::initializeMainWindow(Ui::MainWindow *ui)
 {
     User::initializeMainWindow(ui);
+
     ui->label_team_id->setText(QString::number(team->getIdteam()));
     ui->label_team_name->setText(team->getName());
     ui->label_team_area->setText(team->getAreaname());
