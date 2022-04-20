@@ -1,0 +1,30 @@
+https://exercism.org/tracks/haskell/exercises/crypto-square
+
+import Data.Char
+import Data.List
+
+normalize :: String -> String
+normalize = delwhitespace . alltolower . filter isAlphaNum
+
+delwhitespace xs = [x|x<-xs, x /= ' ']
+alltolower [] = []
+alltolower (x:xs) = toLower x : alltolower xs
+
+
+dim xs = ceiling . sqrt . fromIntegral $ length xs
+
+split [] n = []
+split xs n = (take n xs): (split (drop n xs) n)
+
+split' xs = split xs (dim xs)
+
+splitcontrol xs = if (length (split' xs) <= (dim xs)) then split' xs else split xs ((dim xs)-1)
+
+padR n s
+    | length s < n  = s ++ replicate (n - length s) ' '
+    | otherwise     = s
+addws xs = map (\x->padR (length (head xs)) x) xs
+
+decode = unwords . transpose . addws . splitcontrol . normalize
+
+--main = print(decode "If man was meant to stay on the ground, god would have given us roots.")
