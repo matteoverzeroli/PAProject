@@ -7,7 +7,7 @@ Operation::Operation()
 
 }
 
-Operation::Operation(const QString &name, const QString &address, QGeoCoordinate *coordinate, const QString &petitioner, const QString &cellnumber, COLOR color, const std::shared_ptr<User> &leader, const std::shared_ptr<Team> &team, QDateTime *starttime, QDateTime *finishtime) :
+Operation::Operation(const QString &name, const QString &address, QGeoCoordinate *coordinate, const QString &petitioner, const QString &cellnumber, COLOR color, const std::shared_ptr<User> leader, const std::shared_ptr<Team> team, QDateTime *starttime, QDateTime *finishtime) :
     idoperation(idprog++),
     name(name),
     address(address),

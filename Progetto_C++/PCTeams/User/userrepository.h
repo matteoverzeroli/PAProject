@@ -15,11 +15,8 @@ public:
     std::vector<std::shared_ptr<User>> getAllUser();
     void insertUser(User* user);
     bool removeUser(int iduser);
-    void printTable();
 
-    ~UserRepository(){
-        std::cout<< "delete userrepo" <<std::endl;
-    }
+    ~UserRepository();
 
 private:
     std::map<int, std::shared_ptr<User>> usertable;

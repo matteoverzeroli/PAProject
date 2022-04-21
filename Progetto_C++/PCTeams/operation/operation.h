@@ -19,7 +19,7 @@ class Operation
 {
 public:
     Operation();
-    Operation(const QString &name, const QString &address, QGeoCoordinate *coordinate, const QString &petitioner, const QString &cellnumber, COLOR color, const std::shared_ptr<User> &leader, const std::shared_ptr<Team> &team, QDateTime *starttime, QDateTime *finishtime);
+    Operation(const QString &name, const QString &address, QGeoCoordinate *coordinate, const QString &petitioner, const QString &cellnumber, COLOR color, const std::shared_ptr<User> leader, const std::shared_ptr<Team> team, QDateTime *starttime, QDateTime *finishtime);
 
     QString toString();
 
@@ -66,8 +66,7 @@ private:
     std::shared_ptr<User> leader;
     std::shared_ptr<Team> team;
     QDateTime* starttime;
-    QDateTime* finishtime;
-    //TODO add report reference   
+    QDateTime* finishtime; 
 };
 
 #endif // OPERATION_H

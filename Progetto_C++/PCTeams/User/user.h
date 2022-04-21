@@ -13,11 +13,13 @@ class User
 {
 public:
     User(const QString &password, const QString &name, const QString &surname, QDate *birthday, const QString &email, const QString &cellnumber, const QChar &sex, QPixmap* picture);
+
+    User();
+
     virtual ~User(){
         std::cout << "delete user\n";
         delete picture;
     }
-    User();
 
     int getIduser() const;
     void setIduser(int newIduser);

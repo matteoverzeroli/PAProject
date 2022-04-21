@@ -41,10 +41,3 @@ bool UserRepository::removeUser(int iduser)
 {
     return usertable.erase(iduser);
 }
-
-void UserRepository::printTable(){
-    for(auto it = usertable.begin(); it!= usertable.end(); ++it){
-        std::cout << it->first <<"|"<<*(it->second) << std::endl;
-    }
-
-}
