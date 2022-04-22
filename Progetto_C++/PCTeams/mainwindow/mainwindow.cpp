@@ -378,4 +378,3 @@ void MainWindow::on_commandLinkButton_home_4_clicked()
     ui->stackedWidget->setCurrentIndex(0);
     ui->stackedWidget_info->setCurrentIndex(0);
 }
-
