@@ -207,7 +207,7 @@ void MainWindow::on_pushButton_op_add_clicked()
         ui->stackedWidget_info->setCurrentIndex(3);
 
         ui->statusbar->setStyleSheet("color:green");
-        ui->statusbar->showMessage("Intervento: " + new_op->toString() + " aggiunto correttamente!");
+        ui->statusbar->showMessage("Intervento: " + new_op->getName() + " aggiunto correttamente!");
     }
     else{
         QMessageBox::critical(this, "Errore", "Alcuni campi vuoti!", QMessageBox::Ok);

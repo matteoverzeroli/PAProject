@@ -16,11 +16,11 @@ public:
         std:: cout << "delete volunteer\n";
     }
 
-    std::shared_ptr<Team> getTeam() const;
     void setTeam(std::shared_ptr<Team> newTeam);
 
     virtual void initializeMainWindow(Ui::MainWindow* ui);
     virtual void populateOperationList(QListWidget *list, const QDate &date);
+    virtual std::shared_ptr<Team> getTeam() const;
     virtual QString toString();
 
 protected:

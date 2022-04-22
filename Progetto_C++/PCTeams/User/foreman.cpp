@@ -45,6 +45,11 @@ void Foreman::populateOperationList(QListWidget *oplist, const QDate &date)
     }
 }
 
+std::shared_ptr<Team> Foreman::getTeam() const
+{
+    return Volunteer::getTeam();
+}
+
 void Foreman::populateVolunteerComboBox(QComboBox *comboBox)
 {
     auto users = UserRepository::getInstance()->getAllUser();

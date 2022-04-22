@@ -2,10 +2,7 @@
 
 int Team::idprog = 0;
 
-Team::Team()
-{
-
-}
+Team::Team() : idteam(-1), coordinate(nullptr){}
 
 Team::Team(const QString &name, const QString &areaname, QGeoCoordinate *coordinate) : idteam(idprog++),
     name(name),

@@ -3,15 +3,18 @@
 
 #include <QString>
 #include <QGeoCoordinate>
+#include <iostream>
 
 class Team
 {
 public:
-    Team();
+    Team(); //costruttore utilizzato solamente per creare team temporanei
     Team(const QString &name, const QString &areaname, QGeoCoordinate* coordinate);
 
     ~Team(){
-        delete coordinate;
+        if(coordinate != nullptr)
+            delete coordinate;
+        std::cout << ("deleted team\n");
     }
 
     int getIdteam() const;

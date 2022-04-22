@@ -18,6 +18,7 @@ public:
     virtual void addNewUser(Volunteer* volunteer, int idteam);
     virtual void populateComboBoxTeams(QComboBox* comboBox, bool isForeman);
     virtual void populateListBoxUsers(QListWidget* listWidget, int idteam = -1);
+    virtual std::shared_ptr<Team> getTeam() const;
     virtual void deleteUser(int iduser);
 };
 

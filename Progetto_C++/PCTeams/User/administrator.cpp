@@ -55,7 +55,7 @@ void Administrator::populateComboBoxTeams(QComboBox *comboBox, bool isForeman)
 
 }
 
-void Administrator::populateListBoxUsers(QListWidget *listWidget, int idteam) //-1 seleziona gli amministratori
+void Administrator::populateListBoxUsers(QListWidget *listWidget, int idteam) //idteam = -1 seleziona gli amministratori
 {
     QString result;
 
@@ -63,30 +63,17 @@ void Administrator::populateListBoxUsers(QListWidget *listWidget, int idteam) //
 
     for(auto it = users.begin(); it != users.end(); ++it){
 
-        std::shared_ptr<Foreman> foreman =
-                       std::dynamic_pointer_cast<Foreman> (*it);
-        if(foreman != nullptr){
-            result = (idteam == foreman->getTeam()->getIdteam()) ? foreman->toString() : "";
-        }
-        else{
-            std::shared_ptr<Administrator> admin =
-                           std::dynamic_pointer_cast<Administrator> (*it);
-            if(admin != nullptr && idteam == -1){
-                result = admin->toString();
-            }
-            else{
-                std::shared_ptr<Volunteer> volunteer =
-                               std::dynamic_pointer_cast<Volunteer> (*it);
-                if(volunteer != nullptr){
-                    result = (idteam == volunteer->getTeam()->getIdteam()) ? volunteer->toString() : "";
-                }
-            }
-        }
+        result = (idteam == (*it)->getTeam()->getIdteam()) ? (*it)->toString() : "";
 
         if(!result.isEmpty()){
             listWidget->addItem(result);
         }
     }
+}
+
+std::shared_ptr<Team> Administrator::getTeam() const
+{
+    return std::shared_ptr<Team>(new Team());
 }
 
 void Administrator::deleteUser(int iduser)

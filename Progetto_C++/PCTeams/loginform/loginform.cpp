@@ -30,7 +30,16 @@ LoginForm::~LoginForm()
     delete ui;
 }
 
-void LoginForm::on_pushButton_clicked()
+void LoginForm::logout()
+{
+    mainwindow_ref->hide();
+    ui->lineEdit_password->clear();
+    ui->lineEdit_userid->clear();
+    ui->label_error->clear();
+    this->show();
+}
+
+void LoginForm::on_pushButton_login_clicked()
 {
     int userid = ui->lineEdit_userid->text().toInt();
     QString password = ui->lineEdit_password->text();
@@ -49,11 +58,3 @@ void LoginForm::on_pushButton_clicked()
     }
 }
 
-void LoginForm::logout()
-{
-    mainwindow_ref->hide();
-    ui->lineEdit_password->clear();
-    ui->lineEdit_userid->clear();
-    ui->label_error->clear();
-    this->show();
-}

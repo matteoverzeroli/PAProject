@@ -4,7 +4,6 @@
 #include <QString>
 #include <QChar>
 #include <QDate>
-#include <QObject>
 #include "team/team.h"
 #include <iostream>
 #include "ui_mainwindow.h"
@@ -39,6 +38,7 @@ public:
     void setSex(const QChar &newSex);
 
     virtual void initializeMainWindow(Ui::MainWindow* ui);
+    virtual std::shared_ptr<Team> getTeam() const = 0;
     virtual QString toString();
 
 
