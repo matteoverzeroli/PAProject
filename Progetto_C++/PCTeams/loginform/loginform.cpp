@@ -16,6 +16,8 @@ LoginForm::LoginForm(QWidget *parent, MainWindow* mainwindow) :
     ui->setupUi(this);
     setFixedSize(this->geometry().width(),this->geometry().height()); //set fixed size of the window
 
+    setWindowIcon(QIcon(":img/img/icona.ico"));
+
     QPixmap pix(":/img/img/LOGO.png");
     ui->label_pic->setPixmap(pix.scaled(ui->label_pic->width(),ui->label_pic->height(), Qt::KeepAspectRatio));
 

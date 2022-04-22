@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    setWindowIcon(QIcon(":img/img/icona.ico"));
+
     ui->label_team->hide();
     ui->formWidget_team->hide();
 }

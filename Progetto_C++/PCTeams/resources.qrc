@@ -6,5 +6,7 @@
         <file>img/users.png</file>
         <file>img/tools.png</file>
         <file>img/home.png</file>
+        <file>img/icona.ico</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>
