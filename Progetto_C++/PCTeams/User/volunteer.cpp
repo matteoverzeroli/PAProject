@@ -30,7 +30,7 @@ void Volunteer::initializeMainWindow(Ui::MainWindow *ui)
     ui->label_team_area->setText(team->getAreaname());
     ui->label_team_lat->setText(QString::number(team->getCoordinate()->latitude(),'f',14));
     ui->label_team_lng->setText(QString::number(team->getCoordinate()->longitude(),'f',14));
-
+    ui->commandLinkButton_operation->show();
     ui->label_team->show();
     ui->formWidget_team->show();
 

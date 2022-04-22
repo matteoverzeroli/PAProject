@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     setWindowIcon(QIcon(":img/img/icona.ico"));
+    setWindowTitle("Home");
 
     ui->label_team->hide();
     ui->formWidget_team->hide();
@@ -31,9 +32,12 @@ void MainWindow::inizializeMainWindowsUi(std::shared_ptr<User> user)
     ui->stackedWidget->setCurrentIndex(0);
     ui->stackedWidget_info->setCurrentIndex(0);
 
+    ui->formWidget_team->hide();
+    ui->label_team->hide();
     ui->commandLinkButton_deleteuser->hide();
     ui->commandLinkButton_newuser->hide();
     ui->commandLinkButton_showusers->hide();
+    ui->commandLinkButton_operation->hide();
     ui->pushButton_op_newop->hide();
 
     user->initializeMainWindow(ui);

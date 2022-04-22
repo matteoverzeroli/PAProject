@@ -54,7 +54,7 @@ void LoginForm::on_pushButton_login_clicked()
         this->hide();
     }
     else{
-        ui->label_error->setText("Username e/o password errati!!!");
+        ui->label_error->setText("Username e/o password errati !!!");
         ui->lineEdit_password->setText("");
         ui->lineEdit_userid->setText("");
     }
