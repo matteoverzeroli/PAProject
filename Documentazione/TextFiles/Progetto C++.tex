@@ -110,7 +110,32 @@ Cliccando nel menù in alto alla schermato \textit{Help}, è possibile effettuar
 \end{landscape}
 
 \section{Dettagli implementazione}
+L'\textit{entry point} dell'applicazione sviluppata è la funzione \textit{main} definita nel file \texttt{main.cpp}. All'interno del main vengono create le istante dell'applicazione, della finestra della \textit{Home} e del \textit{Login}. Infine, vengono creati alcuni utenti, squadre e operazioni per poterli utilizzare come esempio, e viene lanciata l'applicazione. Le finestre sono realizzate tramite i \textit{QWidgets} offerti da Qt e sono descritte nei file \texttt{.ui}. Ogni finestra (MainWindow che rappresenta la home e LoginForm che rappresenta la pagina di login) è descritta da una classe, implementata nei file \texttt{.h} (header) e \texttt{.cpp}. All'interno di queste classi, sono definiti gli \textit{slots}, tipiche del linguaggio Qt, che rappresentano degli \textit{event handler} degli eventi sollevati dall'interfaccia grafica (o da altre classi). In questo caso, entrambe le classi derivano dalla classe \textit{QObject}, che integra alcune funzioni base utili per lo sviluppo in Qt.
 
+\subsection{Ereditarietà multipla}
+Gli utenti sono rappresentati tramite una gerarchia di classi, che ne permette la differenziazione in base al ruolo. In particolare, la classe base è rappresentata dalla classe \texttt{User}, astratta in quanto contiene un metodo \textit{pure virtual}. Da questa derivano, in modo virtuale, la classe \texttt{Volunteer} e \texttt{Administator}. Infine, la classe \texttt{Foreman}, che rappresenta il caposquadra, deriva sia da \texttt{Volunteer} che da \texttt{Administator}. Si va quindi a costituire una struttura a \textit{diamante}, che porterebbe a problemi negli oggetti di tipo \texttt{Foreman}, che conterrebbero due differenti istanze di \texttt{User}: una ereditata da \texttt{Volunteer} e una da \texttt{Administrator}. Il \textit{problema del diamante} si risolve utilizzando l'ereditarietà virtuale da \texttt{User} da parte delle classi \texttt{Volunteer} e \texttt{Administator}.
 
+\lstinputlisting[language=C++]{./OtherFiles/virtual_inheritance.cpp}
 
+\subsection{Distruttore virtual}
+Tutti i distruttori delle classi che ammettono sottoclassi sono stati dichiarati \textit{virtual}, in modo tale che la distruzione di un oggetto puntato da un riferimento della superclasse richiami in modo corretto i distruttori delle sottoclassi.
+\lstinputlisting[language=C++]{./OtherFiles/virtual_destructor.cpp}
 
+\subsection{Metodo pure virtual}
+La classe \texttt{User} è definita astratta a causa della presenza di un metodo \textit{pure virtual}. Per cui, non è possibile creare una istanza del tipo \texttt{User}. Questo metodo, deve essere quindi ridefinito in ogni sottoclasse.
+\lstinputlisting[language=C++]{./OtherFiles/pure_virtual.cpp}
+
+\subsection{Metodi virtual: overriding}
+Alcuni metodi sono stati definiti virtual, in modo da poter utilizzare il polimorfismo offerto dal linguaggio tramite l'utilizzo di riferimenti agli oggetti. Ad esempio:
+\lstinputlisting[language=C++]{./OtherFiles/virtual_method.cpp}
+Questo metodo è stato implementato nella classe \texttt{User} e in tutte le sottoclassi e si occupa di inizializzare la finestra \textit{Home} in base al ruolo dell'utente autenticato.
+
+\subsection{Overload di metodi}
+In alcuni casi, si è eseguito l'overload dei metodi, definendo diverse funzioni con lo stesso nome ma differente segnatura, in modo da differenziarne il comportamento in base ai parametri passati. Ad esempio:
+\lstinputlisting[language=C++]{./OtherFiles/method_overload.cpp}
+
+\subsection{Pattern Singleton}
+Le classi \texttt{UserRepository}, \texttt{TeamRepository} e \texttt{OperationRepository} rappresentano delle tabelle (rappresentate da delle \textit{mappe chiave-valore}) nelle quali vengono salvate le informazioni relative rispettivamente a utenti, squadre e interventi, simulando la presenza e le operazioni di un \textit{database}. 
+\\todo
+\subsection{STL}
+\subsection{smartpointer}

@@ -1,0 +1,1 @@
+virtual std::shared_ptr<Team> getTeam() const = 0;

@@ -1,0 +1,1 @@
+virtual void initializeMainWindow(Ui::MainWindow* ui);
