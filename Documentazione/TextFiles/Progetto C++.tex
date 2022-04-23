@@ -69,14 +69,48 @@ Nel caso in cui si voglia cancellare un utente, è possibile selezionare una squ
 \end{figure}
 
 \subsection{Visualizza utenti}
+Un caposquadra o un amministratore possono visualizzare gli utenti appartenenti a una squadra (\Fig\ref{fig:view_user}), selezionandola dalla \textit{combo box}. `E possibile visualizzare gli amministratori. Per questa funzionalità, se l'utente loggato è un amministratore potrà visualizzare la lista degli utenti appartenenti a tutte le squadre inserite nel sistema. Al contrario, se è un caposquadra potrà vedere solamente gli amministratori o la propria squadra.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1\linewidth]{./ImageFiles/view_user}
+	\caption{Visualizzazione utenti.}
+	\label{fig:view_user}
+\end{figure}
+
 \subsection{Visualizza interventi}
+I volontari e i capisquadra possono visualizzare rispettivamente gli interventi della propria squadra oppure di tutte le squadre. Cliccando su \textit{Visualizza interventi}, viene mostrato un calendario sul quale selezionare una data (\Fig\ref{fig:view_operation}). Vengono cosi mostrati gli interventi programmati in quella giornata. Gli eventi possono essere creati solo dal caposquadra, cliccando sul pusante \textit{Inserisci un nuovo intervento}.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1\linewidth]{./ImageFiles/view_operation.png}
+	\caption{Visualizzazione interventi.}
+	\label{fig:view_operation}
+\end{figure}
+
+Quando il pulsante viene cliccato, viene mostrata una form per l'inserimento delle informazioni dell'intervento, come mostrato in figura \ref{fig:new_op}. Cliccando su \textit{Inserisci intervento} un messaggio di conferma indica che l'evento è stato inserito. Se tutti i campi non sono stati completati, viene invece mostrato un messaggio di errore.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1\linewidth]{./ImageFiles/new_op.png}
+	\caption{Inserimento nuovo intervento.}
+	\label{fig:new_op}
+\end{figure}
+
+\subsection{Lougout}
+Cliccando nel menù in alto alla schermato \textit{Help}, è possibile effettuare il logout. Viene quindi mostrata la finestra di login.
 
 \begin{landscape}
 	\section{Diagramma delle classi}
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[width=0.7\linewidth]{./OtherFiles/Class Diagram}
+		\includegraphics[width=0.9\linewidth]{./OtherFiles/Class Diagram}
 		\caption{Class Diagram.}
 		\label{fig:class_diagram}
 	\end{figure}
 \end{landscape}
+
+\section{Dettagli implementazione}
+
+
+
+

@@ -7,6 +7,9 @@
         <file>img/tools.png</file>
         <file>img/home.png</file>
         <file>img/icona.ico</file>
+        <file>img/green.png</file>
+        <file>img/orange.png</file>
+        <file>img/red.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

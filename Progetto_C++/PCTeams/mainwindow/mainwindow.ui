@@ -444,8 +444,21 @@
       </widget>
       <widget class="QWidget" name="page_operation">
        <layout class="QGridLayout" name="gridLayout_3">
-        <item row="1" column="0">
+        <item row="1" column="1">
          <widget class="QCalendarWidget" name="calendarWidget"/>
+        </item>
+        <item row="1" column="0">
+         <spacer name="horizontalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </widget>
@@ -457,7 +470,7 @@
        <font/>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page_blank"/>
       <widget class="QWidget" name="page_newuser">

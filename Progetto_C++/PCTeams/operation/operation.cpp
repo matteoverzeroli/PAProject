@@ -153,6 +153,16 @@ const QString Operation::colorToString(COLOR c)
     }
 }
 
+const QIcon Operation::colorToIcon(COLOR c)
+{
+    if(c == COLOR::GREEN)
+        return QIcon(":/img/img/green");
+    else if(c == COLOR::ORANGE)
+        return QIcon(":/img/img/orange");
+    else
+        return QIcon(":/img/img/red");
+}
+
 COLOR Operation::stringToColor(QString s)
 {
     if(s == "RED")

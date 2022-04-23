@@ -48,7 +48,7 @@ void Volunteer::populateOperationList(QListWidget *oplist, const QDate &date)
 
     auto operations = OperationRepository::getInstance()->getAllOperation(team->getIdteam(), date);
     for(auto it = operations.begin(); it != operations.end(); ++it){
-        oplist->addItem((*it)->toString());
+        oplist->addItem(new QListWidgetItem(Operation::colorToIcon((*it)->getColor()),(*it)->toString()));
     }
 }
 

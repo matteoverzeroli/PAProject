@@ -52,6 +52,7 @@ public:
     void setFinishtime(QDateTime *newFinishtime);
 
     static const QString colorToString(COLOR c);
+    static const QIcon colorToIcon(COLOR c);
     static COLOR stringToColor(QString s);
 
 private:
