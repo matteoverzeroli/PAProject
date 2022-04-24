@@ -1,1 +1,22 @@
-https://exercism.org/tracks/haskell/exercises/crypto-square
+\section{Descrizione}
+Il progetto scritto in linguaggio Haskell permette di ottenere la versione criptata di una frase secondo il Cifrario di Cesare (tratto da esercizio 8 capitolo 5 del libro \textit{Programming in Haskell - Graham Hutton}) e l'algoritmo di Crypto Square (\url{https://exercism.org/tracks/haskell/exercises/crypto-square}). In particolare, viene richiesto all'utente di inserire una frase ed indicare quale metodo utilizzare per la cifratura. Sulla console viene poi mostrata la stringa criptata
+
+\section{Algoritmo: Crypto Square}
+All'interno del programma è stato inizialmente implementato un metodo per la creazione di messaggi segreti chiamato \textit{square code}. 
+
+Inizialmente la stringa viene normalizzata: vengono rimossi spazi e punteggiatura, trasformando tutte le lettere in carattere minuscolo. Questa operazione viene effettuata dal seguente codice:
+\lstinputlisting[language=haskell]{./OtherFiles/normalize.hs}
+Ora, la stringa deve essere organizzata in un rettangolo tale che:
+\begin{itemize}
+	\item il numero di colonne \textbf{c} sia maggiore del numero di righe \textit{r};
+	\item la differenza \textbf{c} - \textbf{r} sia minore o uguale a 1. 
+\end{itemize}
+Per fare ciò, inizialmente si calcola la radice quadrata del numero di caratteri presenti nella stringa, arrotondata all'intero successivo (funzione \textit{dim}). Successivamente, si divide la stringa in sotto-sequenze di caratteri della lunghezza calcolata (funzione \textit{split'}). Se vengono rispettate le condizioni della definizione del rettangolo, si procede oltre. Altrimenti si divide la stringa riducendo il numero di righe di una unità (funzione \textit{splitcontrol}). Di seguito si riportano le righe di codice:
+\lstinputlisting[language=haskell]{./OtherFiles/split.hs}
+Per rendere far sì che il rettangolo abbia tutte le righe di uguale lunghezza, vengono aggiunti degli spazi bianchi a destra tramite la funzione \textit{addws}:
+\lstinputlisting[language=haskell]{./OtherFiles/addws.hs}
+Infine, il messaggio cifrato si ottiene leggendo le colonne dall'alto verso il basso, carattere per carattere, da sinistra verso destra (funzione\textit{transpose}).
+\lstinputlisting[language=haskell]{./OtherFiles/encode_cs.hs}
+Infine, a seconda della scelta dell'utente, il messaggio può essere normalizzato per nascondere le dimensioni del rettangolo, che si comportano come "chiave" utile per decifrare il messaggio.
+
+\section{Algoritmo: Caesar Cipher}
