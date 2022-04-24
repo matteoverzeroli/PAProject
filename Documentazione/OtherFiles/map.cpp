@@ -1,0 +1,1 @@
+std::map<int, std::shared_ptr<User>> usertable

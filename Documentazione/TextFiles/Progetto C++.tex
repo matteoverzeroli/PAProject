@@ -134,8 +134,29 @@ Questo metodo è stato implementato nella classe \texttt{User} e in tutte le sot
 In alcuni casi, si è eseguito l'overload dei metodi, definendo diverse funzioni con lo stesso nome ma differente segnatura, in modo da differenziarne il comportamento in base ai parametri passati. Ad esempio:
 \lstinputlisting[language=C++]{./OtherFiles/method_overload.cpp}
 
-\subsection{Pattern Singleton}
-Le classi \texttt{UserRepository}, \texttt{TeamRepository} e \texttt{OperationRepository} rappresentano delle tabelle (rappresentate da delle \textit{mappe chiave-valore}) nelle quali vengono salvate le informazioni relative rispettivamente a utenti, squadre e interventi, simulando la presenza e le operazioni di un \textit{database}. 
-\\todo
-\subsection{STL}
-\subsection{smartpointer}
+\subsection{Pattern Singleton}\label{sec:singleton}
+Le classi \texttt{UserRepository}, \texttt{TeamRepository} e \texttt{OperationRepository} rappresentano delle tabelle (costituite da \textit{mappe chiave-valore}) nelle quali vengono salvate le informazioni relative rispettivamente a utenti, squadre e interventi, simulando le operazioni di un \textit{database}. Per garantire l'unicità di ogni \textit{repository}, queste classi sono state definite secondo il pattern \textit{Singleton}, definendo il costruttore privato. In questo modo non è possibile creare istanze della classe al di fuori della stessa. Tuttavia, è possibile accedere all'istanza tramite il metodo \textit{getInstance()}, che restituisce un puntatore all'istanza della classe. In questo modo, si può accedere ad alcuni metodi per eseguire operazione sulla tabella che conserva i dati. Si riporta di seguito la definizione della classe \textit{UserRepository}:
+\lstinputlisting[language=C++]{./OtherFiles/userrepository.cpp}
+
+\subsection{STL: std::vector, std::map, std::iterator}
+All'interno dell'applicazione sono stati utilizzati i \textit{containers} \texttt{vector} e \texttt{map} forniti dalla \textit{Standard Template Library}. In particolare, le classi descritte nella sezione \ref{sec:singleton}, memorizzano utenti, squadre e interventi utilizzando una mappa \textit{chiave-valore}, in cui la chiave è di tipo \texttt{int} (costituita dall'id dell'oggetto) mentre il valore è uno \textit{smart pointer} all'oggetto. Ad esempio, la mappa che permette la memorizzazione degli utenti è stata dichiarata nel seguente modo:
+\lstinputlisting[language=C++]{./OtherFiles/map.cpp}
+Si è scelto di utilizzare una mappa per rendere efficiente le operazioni di ricerca tramite l'id dell'utente. Per permettere il polimorfismo (ossia memorizzare oggetti delle sottoclassi del tipo \texttt{User}), evitando il fenomeno dello \textit{slicing}, è stato necessario definire il \textit{valore} della mappa come puntatore di tipo \texttt{User}. Inoltre, affinché fosse garantita la distruzione corretta dell'oggetto puntato, si sono utilizzati i puntatori smart di tipo \textit{shared}, descritti nella sezione successiva. In questo modo, quando viene cancellato dalla mappa il riferimento alla risorsa, viene chiamato il distruttore dell'oggetto (se non sono più attivi altri riferimenti).
+
+In alcuni casi, sono stati utilizzati anche oggetti di tipo \textit{vector}, che permettono la definizione di una lista di oggetti. Ad esempio, si riporta la definizione del metodo che restituisce tutti gli utenti inseriti nel sistema:
+\lstinputlisting[language=C++]{./OtherFiles/vector.cpp}
+
+Per scorrere vettori e mappe sono stati usati gli iteratori, sempre forniti dalla STL:
+\lstinputlisting[language=C++]{./OtherFiles/iterators.cpp}
+
+\subsection{Smart pointers: shared\textunderscore ptr} 
+Nel progetto realizzato, si sono spesso utilizzati degli \textit{smart pointers} per semplificare l'utilizzo di puntatori agli oggetti. Inoltre, i puntatori intelligenti permettono di evitare problemi quali \textit{dengling pointers} e \textit{memory leak}, tipici dell'utilizzo non corretto dei puntatori. In particolare, si sono utilizzati gli \texttt{shared\textunderscore ptr<...>}, che permettono proprietari multipli del puntatore raw sottostante. In questo modo, possono essere copiati e passati come parametri ai metodi.
+\lstinputlisting[language=C++]{./OtherFiles/smartpointers.cpp}
+
+\subsection{Template}
+In molte occasioni, si sono utilizzati i \textit{template}, come ad esempio la definizione del tipo degli \textit{smart poiter}, delle mappe e dei \textit{vector} creati. Nella classe \texttt{Helpers} si è anche scritto un metodo che restituisce un vettore di tutti i valori contenuti nella mappa, passata come argomento. Affinché questo metodo fosse generico per ogni tipo di mappa chiave-valore, si è scelto di implementarlo utilizzando i \textit{template} nel seguente modo:
+\lstinputlisting[language=C++]{./OtherFiles/template.cpp}
+
+\subsection{Friend}
+A scopo di debug, è stato definito l'operatore \textit{<<} per gli oggetti di tipo \texttt{User}. Dal momento che si accedeva ai membri privati della classe, la definizione è stata dichiara friend nel modo seguente:
+\lstinputlisting[language=C++]{./OtherFiles/friend.cpp}
