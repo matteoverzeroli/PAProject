@@ -53,10 +53,10 @@ int2upp :: Int -> Char
 int2upp n = chr(ord 'A' + n)
 
 num2int :: Char -> Int
-num2int c = ord c - ord '1'
+num2int c = ord c - ord '0'
 
 int2num :: Int -> Char
-int2num n = chr (ord '1' + n)
+int2num n = chr (ord '0' + n)
 
 shift :: Int -> Char -> Char 
 shift n c | isLower c = int2low ((low2int c + n) `mod` 26)

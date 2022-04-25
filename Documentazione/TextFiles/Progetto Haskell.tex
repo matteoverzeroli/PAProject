@@ -48,3 +48,30 @@ Vediamo che se suddividiamo il messaggio per creare un rettangolo delle stesse d
 Se leggiamo carattere per carattere per colonne, troviamo la frase normalizzata di partenza.
 
 \section{Algoritmo: Caesar Cipher}
+Il secondo algoritmo proposto è il cifrario di Cesare. In particolare, per codificare una stringa bisogna sostituire ogni lettera con una lettera dell'alfabeto in posizione \textit{K}, dove K indica lo shift da effettuare su ogni lettera. Per decodificare, è sufficiente eseguire la medesima operazione considerando uno shift di \textit{-K}. In particolare si riporta la versione in grado di gestire lettere maiuscole, minuscole e numeri. 
+
+Per implementare questo algoritmo, sono necessarie delle funzioni che convertono un carattere in un numero e viceversa. Queste operazioni sono basate sulle funzioni \textit{ord}, che restituiscono il codice ASCII associato al carattere e \textit{chr}, che esegue l'operazione inversa:
+\lstinputlisting[language=haskell]{./OtherFiles/funcint.hs}
+
+L'operazione di shift risulta quindi essere facilmente implementabile:
+\begin{itemize}
+	\item se il carattere è una lettera, maiuscola o minuscola, viene convertita nel codice ASCII corrispondente (sottraendo rispettivamente l'offset del carattere 'A' o 'a'); poi viene sommato lo shift da eseguire, effettuando sul risultato l'operazione \textit{modulo} 26; infine, il valore ottenuto viene riconvertito in un carattere ASCII;
+	\item se il carattere è un numero viene convertito nel codice ASCII corrispondente (sottraendo l'offset del carattere '0'); viene quindi sommato lo shift da eseguire, effettuando sul risultato l'operazione \textit{modulo} 10; infine, il valore ottenuto viene riconvertito in un carattere ASCII;
+	\item se il carattere considerato non rientra in una delle categorie precedente, viene lasciato invariato (ad esempio spazi bianchi, caratteri di punteggiatura o speciali).
+\end{itemize}
+Queste operazione vengono eseguite dal seguente frammento di codice:
+\lstinputlisting[language=haskell]{./OtherFiles/shift.hs}
+
+Infine, è sufficiente che la funzione di shift, appena descritta, venga applicata ad ogni carattere della stringa fornita:
+\lstinputlisting[language=haskell]{./OtherFiles/encode_c.hs}
+
+\subsection{Esempio}
+Supponiamo di voler codificare la stringa: \\
+\texttt{"Il mio numero preferito e il 37!"}, \\
+con uno shift di \textit{K} = 5.
+
+Procedendo si ottiene la frase decodificata: \\
+\texttt{"Nq rnt szrjwt uwjkjwnyt j nq 82!"}.
+
+Per effettuare la decodifica, si applica lo stesso algoritmo, con \textit{K} = -5, da cui si ottiene: \\
+\texttt{"Il mio numero preferito e il 37!"}.
