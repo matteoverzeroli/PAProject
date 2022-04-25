@@ -19,4 +19,32 @@ Infine, il messaggio cifrato si ottiene leggendo le colonne dall'alto verso il b
 \lstinputlisting[language=haskell]{./OtherFiles/encode_cs.hs}
 Infine, a seconda della scelta dell'utente, il messaggio può essere normalizzato per nascondere le dimensioni del rettangolo, che si comportano come "chiave" utile per decifrare il messaggio.
 
+\subsection{Esempio}
+Definiziamo la frase :\texttt{"If man was meant to stay on the ground, god would have given us roots."}.
+La versione normalizzata sarà : \texttt{"ifmanwasmeanttostayonthegroundgodwouldhavegivenusroots"}.
+
+Creiamo il rettangolo: \\
+
+"ifmanwas" \\
+"meanttos" \\
+"tayonthe" \\ 
+"groundgo" \\
+"dwouldha" \\
+"vegivenu" \\
+"sroots\;\;\;\;" \\
+
+Il messaggio criptato in forma normalizzata risulta quindi essere: \texttt{"imtgdvsfearwermayoogoanouuiontnnlvtwttddesaohghnsseoau"}.
+Vediamo che se suddividiamo il messaggio per creare un rettangolo delle stesse dimensioni di quello calcolato prima, otteniamo: \\
+
+"imtgdvs" \\
+"fearwer" \\
+"mayoogo" \\
+"anouuio" \\
+"ntnnlvt" \\
+"wttddes" \\
+"aohghn\;\;" \\
+"sseoau\;\;" \\
+
+Se leggiamo carattere per carattere per colonne, troviamo la frase normalizzata di partenza.
+
 \section{Algoritmo: Caesar Cipher}
