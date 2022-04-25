@@ -26,15 +26,13 @@ QString Operation::toString()
     return  "Intervento n°: " +
             QString::number(idoperation) + " " +
             name + " |" + address + " " +
-            coordinate->toString() + " " +
-            starttime->toString("dd/MM/yyyy") + " " +
-            finishtime->toString("dd/MM/yyyy") + " " +
+            coordinate->toString() + " |" +
+            "Inizio: " + starttime->toString("dd/MM/yyyy hh:mm:ss") + " " +
+            "Fine: " + finishtime->toString("dd/MM/yyyy hh:mm:ss") + "| " +
             "|Richiedente: " + " " + petitioner + " " +
             cellnumber + " " + colorToString(color) + " " +
             "|Capo Intervento: " + leader->toString() + " " +
             "|Squadra: " + team->getName();
-
-
 }
 
 int Operation::getIdoperation() const
@@ -155,12 +153,13 @@ const QString Operation::colorToString(COLOR c)
 
 const QIcon Operation::colorToIcon(COLOR c)
 {
-    if(c == COLOR::GREEN)
-        return QIcon(":/img/img/green");
-    else if(c == COLOR::ORANGE)
-        return QIcon(":/img/img/orange");
-    else
-        return QIcon(":/img/img/red");
+    switch (c)
+    {
+        case COLOR::RED:   return QIcon(":/img/img/red");
+        case COLOR::ORANGE:   return QIcon(":/img/img/orange");
+        case COLOR::GREEN: return QIcon(":/img/img/green");
+        default : return QIcon("");
+    }
 }
 
 COLOR Operation::stringToColor(QString s)

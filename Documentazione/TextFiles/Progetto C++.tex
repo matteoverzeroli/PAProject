@@ -157,6 +157,11 @@ Nel progetto realizzato, si sono spesso utilizzati degli \textit{smart pointers}
 In molte occasioni, si sono utilizzati i \textit{template}, come ad esempio la definizione del tipo degli \textit{smart poiter}, delle mappe e dei \textit{vector} creati. Nella classe \texttt{Helpers} si è anche scritto un metodo che restituisce un vettore di tutti i valori contenuti nella mappa, passata come argomento. Affinché questo metodo fosse generico per ogni tipo di mappa chiave-valore, si è scelto di implementarlo utilizzando i \textit{template} nel seguente modo:
 \lstinputlisting[language=C++]{./OtherFiles/template.cpp}
 
+\subsection{Enum}
+All'interno dell'applicazione si è inoltre definito un tipo \texttt{enum} per rappresentare la criticità di un intervento, definendolo nel seguente modo:
+\lstinputlisting[language=C++]{./OtherFiles/enum.cpp}
+Sono stati poi inseriti dei metodi statici nella classe \texttt{Operation} per gestire l'utilizzo della enumerazione.
+
 \subsection{Friend}
 A scopo di debug, è stato definito l'operatore \textit{<<} per gli oggetti di tipo \texttt{User}. Dal momento che si accedeva ai membri privati della classe, la definizione è stata dichiara friend nel modo seguente:
 \lstinputlisting[language=C++]{./OtherFiles/friend.cpp}

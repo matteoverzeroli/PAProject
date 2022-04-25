@@ -27,6 +27,7 @@ HEADERS += \
     $$PWD/loginform/loginform.h \
     $$PWD/mainwindow/mainwindow.h \
     helpers.h \
+    operation/color.h \
     operation/operation.h \
     operation/operationrepository.h \
     team/team.h \

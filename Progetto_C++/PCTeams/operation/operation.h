@@ -8,20 +8,13 @@
 #include <memory>
 #include "user/user.h"
 #include "team/team.h"
-
-enum class COLOR {
-    RED,
-    ORANGE,
-    GREEN
-};
+#include "color.h"
 
 class Operation
 {
 public:
     Operation();
     Operation(const QString &name, const QString &address, QGeoCoordinate *coordinate, const QString &petitioner, const QString &cellnumber, COLOR color, const std::shared_ptr<User> leader, const std::shared_ptr<Team> team, QDateTime *starttime, QDateTime *finishtime);
-
-    QString toString();
 
     ~Operation(){
         delete coordinate;
@@ -50,6 +43,8 @@ public:
     void setStarttime(QDateTime *newStarttime);
     QDateTime *getFinishtime() const;
     void setFinishtime(QDateTime *newFinishtime);
+
+    QString toString();
 
     static const QString colorToString(COLOR c);
     static const QIcon colorToIcon(COLOR c);
