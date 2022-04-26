@@ -1,5 +1,5 @@
 \section{Descrizione}
-Il progetto scritto in linguaggio Haskell permette di ottenere la versione criptata di una frase secondo il Cifrario di Cesare (tratto da esercizio 8 capitolo 5 del libro \textit{Programming in Haskell - Graham Hutton}) e l'algoritmo di Crypto Square (\url{https://exercism.org/tracks/haskell/exercises/crypto-square}). In particolare, viene richiesto all'utente di inserire una frase ed indicare quale metodo utilizzare per la cifratura. Sulla console viene poi mostrata la stringa criptata
+Il progetto scritto in linguaggio Haskell permette di ottenere la versione criptata di una frase secondo l'algoritmo di Crypto Square (\url{https://exercism.org/tracks/haskell/exercises/crypto-square}) e il Cifrario di Cesare (tratto dall' esercizio 8 capitolo 5 del libro \textit{Programming in Haskell - Graham Hutton}). In particolare, viene richiesto all'utente di inserire una frase ed indicare quale metodo utilizzare per la cifratura. Sulla console viene poi mostrata la stringa criptata.
 
 \section{Algoritmo: Crypto Square}
 All'interno del programma è stato inizialmente implementato un metodo per la creazione di messaggi segreti chiamato \textit{square code}. 
@@ -8,14 +8,14 @@ Inizialmente la stringa viene normalizzata: vengono rimossi spazi e punteggiatur
 \lstinputlisting[language=haskell]{./OtherFiles/normalize.hs}
 Ora, la stringa deve essere organizzata in un rettangolo tale che:
 \begin{itemize}
-	\item il numero di colonne \textbf{c} sia maggiore del numero di righe \textit{r};
+	\item il numero di colonne \textbf{c} sia maggiore del numero di righe \textbf{r};
 	\item la differenza \textbf{c} - \textbf{r} sia minore o uguale a 1. 
 \end{itemize}
 Per fare ciò, inizialmente si calcola la radice quadrata del numero di caratteri presenti nella stringa, arrotondata all'intero successivo (funzione \textit{dim}). Successivamente, si divide la stringa in sotto-sequenze di caratteri della lunghezza calcolata (funzione \textit{split'}). Se vengono rispettate le condizioni della definizione del rettangolo, si procede oltre. Altrimenti si divide la stringa riducendo il numero di righe di una unità (funzione \textit{splitcontrol}). Di seguito si riportano le righe di codice:
 \lstinputlisting[language=haskell]{./OtherFiles/split.hs}
-Per rendere far sì che il rettangolo abbia tutte le righe di uguale lunghezza, vengono aggiunti degli spazi bianchi a destra tramite la funzione \textit{addws}:
+Per far sì che il rettangolo abbia tutte le righe di uguale lunghezza, vengono aggiunti degli spazi bianchi a destra tramite la funzione \textit{addws}:
 \lstinputlisting[language=haskell]{./OtherFiles/addws.hs}
-Infine, il messaggio cifrato si ottiene leggendo le colonne dall'alto verso il basso, carattere per carattere, da sinistra verso destra (funzione\textit{transpose}).
+Infine, il messaggio cifrato si ottiene leggendo le colonne dall'alto verso il basso, carattere per carattere, da sinistra verso destra (funzione \textit{transpose}).
 \lstinputlisting[language=haskell]{./OtherFiles/encode_cs.hs}
 Infine, a seconda della scelta dell'utente, il messaggio può essere normalizzato per nascondere le dimensioni del rettangolo, che si comportano come "chiave" utile per decifrare il messaggio.
 
@@ -33,7 +33,9 @@ Creiamo il rettangolo: \\
 "vegivenu" \\
 "sroots\;\;\;\;" \\
 
-Il messaggio criptato in forma normalizzata risulta quindi essere: \texttt{"imtgdvsfearwermayoogoanouuiontnnlvtwttddesaohghnsseoau"}.
+Il messaggio criptato in forma normalizzata risulta quindi essere: \\
+\texttt{"imtgdvsfearwermayoogoanouuiontnnlvtwttddesaohghnsseoau"}. 
+
 Vediamo che se suddividiamo il messaggio per creare un rettangolo delle stesse dimensioni di quello calcolato prima, otteniamo: \\
 
 \noindent"imtgdvs" \\
@@ -45,12 +47,12 @@ Vediamo che se suddividiamo il messaggio per creare un rettangolo delle stesse d
 "aohghn\;\;" \\
 "sseoau\;\;" \\
 
-Se leggiamo carattere per carattere per colonne, troviamo la frase normalizzata di partenza.
+Se leggiamo per colonne, carattere per carattere dall'alto verso il basso, troviamo la frase normalizzata di partenza.
 
 \section{Algoritmo: Caesar Cipher}
-Il secondo algoritmo proposto è il cifrario di Cesare. In particolare, per codificare una stringa bisogna sostituire ogni lettera con una lettera dell'alfabeto in posizione \textit{K}, dove K indica lo shift da effettuare su ogni lettera. Per decodificare, è sufficiente eseguire la medesima operazione considerando uno shift di \textit{-K}. In particolare si riporta la versione in grado di gestire lettere maiuscole, minuscole e numeri. 
+Il secondo algoritmo proposto è il cifrario di Cesare. In particolare, per codificare una stringa bisogna sostituire ogni lettera con una lettera dell'alfabeto in posizione \textbf{L + K}, dove K indica lo shift da effettuare su ogni lettera, mentre \textbf{L} la posizione nell'alfabeto della lettera corrente. Per decodificare, è sufficiente eseguire la medesima operazione considerando uno shift di \textbf{-K}. In particolare si riporta la versione in grado di gestire lettere maiuscole, minuscole e numeri. 
 
-Per implementare questo algoritmo, sono necessarie delle funzioni che convertono un carattere in un numero e viceversa. Queste operazioni sono basate sulle funzioni \textit{ord}, che restituiscono il codice ASCII associato al carattere e \textit{chr}, che esegue l'operazione inversa:
+Per implementare questo algoritmo, sono necessarie delle funzioni che permettono di effettuare lo shift nell'alfabeto. Queste operazioni sono basate sulle funzioni \textit{ord}, che restituiscono il codice ASCII associato al carattere e \textit{chr}, che esegue l'operazione inversa:
 \lstinputlisting[language=haskell]{./OtherFiles/funcint.hs}
 
 L'operazione di shift risulta quindi essere facilmente implementabile:
@@ -68,10 +70,15 @@ Infine, è sufficiente che la funzione di shift, appena descritta, venga applica
 \subsection{Esempio}
 Supponiamo di voler codificare la stringa: \\
 \texttt{"Il mio numero preferito e il 37!"}, \\
-con uno shift di \textit{K} = 5.
+con uno shift di \textbf{K} = 5.
 
 Procedendo si ottiene la frase decodificata: \\
 \texttt{"Nq rnt szrjwt uwjkjwnyt j nq 82!"}.
 
-Per effettuare la decodifica, si applica lo stesso algoritmo, con \textit{K} = -5, da cui si ottiene: \\
+Per effettuare la decodifica, si applica lo stesso algoritmo, con \textbf{K} = -5, da cui si ottiene: \\
 \texttt{"Il mio numero preferito e il 37!"}.
+
+\section{Main}
+All'interno del main dell'applicazione, è stato inserito un blocco \texttt{do}, nel quale viene richiesto di inserire una frase all'utente da decodificare. Successivamente, l'utente, inserendo i caratteri \texttt{"C"} oppure \texttt{"CS"}, seleziona il metodo di codifica desiderato. Se si utilizza il cifrario di Cesare, viene anche richiesto lo shift da applicare. Invece, se l'utente sceglie il metodo Crypto Square, viene mostrato il risultato. Poi, viene chiesto all'utente se si desidera vedere una versione normalizzata o no della stringa codificata.
+
+\lstinputlisting[language=haskell]{./OtherFiles/main.hs}

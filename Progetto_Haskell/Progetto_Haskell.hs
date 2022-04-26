@@ -70,9 +70,9 @@ encode_c n xs = [shift n x | x<-xs]
 ---main---
 
 main = do
-  putStrLn "inserisci una frase: "
+  putStrLn "inserisci una frase da criptare: "
   phrase <- getLine
-  putStrLn "con quale metodo vuoi codificarla? Caesar   cipher (C) oppure Crypto Square (CS)"
+  putStrLn "con quale metodo vuoi codificarla? Caesar cipher (C) oppure Crypto Square (CS)"
   algorithm <-getLine
   if algorithm == "C" 
   then do
