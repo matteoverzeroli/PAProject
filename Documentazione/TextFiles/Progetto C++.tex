@@ -9,13 +9,12 @@ Gli utenti che possono utilizzare l'applicazione sono suddivisi in base al loro 
 \end{itemize}
 Ogni utente, in base al proprio ruolo, avrà accesso a particolari funzionalità quali aggiungere o cancellare un utente nel sistema, visualizzare gli utenti della propria squadra, visualizzare e pianificare interventi. A differenza degli amministratori, il volontario e il caposquadra appartengono a una squadra, caratterizzata da un nome e da un'area di intervento. 
 
-Per accedere all'applicazione è necessario effettuare un login, inserendo uno username, rappresentato dal proprio numero di matricola, e una password scelta al momento della registrazione dell'utente.
+Per accedere all'applicazione è necessario effettuare il login, inserendo lo username, rappresentato dal proprio numero di matricola, e la password scelta al momento della registrazione dell'utente.
 
 L'interfaccia grafica è stata realizzata attraverso gli oggetti QtWidget che permettono di semplificare la realizzazione della GUI tramite l'editor integrato nell'IDE Qt Creator.
 
 \section{Funzionamento}
 All'avvio del programma, viene subito richiesto di effettuare il login (\Fig\ref{fig:loginform}), inserendo lo username (costituito dalla matricola assegnata dal sistema al momento dell'inserimento dell'utente) e la password. In caso di username e/o password errati, viene mostrato un messaggio di errore e lo username e la password errati vengono cancellati. Non è quindi possibile procedere oltre nell'applicazione fino a quando si inseriscono delle credenziali corrette.
-
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.4\linewidth]{./ImageFiles/loginform}
@@ -23,8 +22,9 @@ All'avvio del programma, viene subito richiesto di effettuare il login (\Fig\ref
 	\caption{Finestra di login e login errato.}
 	\label{fig:loginform}
 \end{figure}
+Al contrario, se le credenziali di accesso sono corrette viene mostrato all'utente la schermata principale (\Fig\ref{fig:home_foreman}).
 
-Al contrario, se le credenziali di accesso sono corrette viene mostrato all'utente la schermata principale (\Fig\ref{fig:home_foreman}). La schermata principale è divisa in due sezioni. Nella parte sinistra è possibile vedere tutte le informazioni memorizzate dell'utente (fotografia, matricola, nome, cognome, data di nascita, email, numero di telefono, sesso) e le informazioni relative alla squadra (identificativo e nome della squadra, nome e coordinate dell'area di intervento). Le informazioni relative alla squadra non sono mostrate nel caso in cui l'utente sia un amministratore, in quanto non appartiene a nessuna squadra.
+La schermata principale è divisa in due sezioni. Nella parte sinistra è possibile vedere tutte le informazioni memorizzate dell'utente (fotografia, matricola, nome, cognome, data di nascita, email, numero di telefono, sesso) e le informazioni relative alla squadra (identificativo e nome della squadra, nome e coordinate dell'area di intervento). Le informazioni relative alla squadra non sono mostrate nel caso in cui l'utente sia un amministratore, in quanto non appartiene a nessuna squadra.
 
 \begin{figure}[h!]
 	\centering
@@ -33,7 +33,7 @@ Al contrario, se le credenziali di accesso sono corrette viene mostrato all'uten
 	\label{fig:home_foreman}
 \end{figure}
 
-Nella parte destra è possibile vedere un piccolo menù dal quale scegliere le operazioni da eseguire: aggiungere un utente, eliminare un utente, visualizzare utenti e interventi. A seconda del ruolo dell'utente loggato, questo menù mostrerà diverse opzioni. In particolare, al volontario è permesso solamente visualizzare gli interventi, mentre all'amministratore non è possibile visualizzare gli interventi. Cliccando un pulsante nel menù sarà possibile eseguire le operazioni richieste.
+Nella parte destra è possibile vedere un piccolo menù dal quale scegliere le operazioni da eseguire: aggiungere un utente, eliminare un utente, visualizzare utenti e interventi. A seconda del ruolo dell'utente loggato, questo menù mostrerà diverse opzioni. In particolare, al volontario è permesso solamente visualizzare gli interventi, mentre all'amministratore non è consentito di visualizzare gli interventi. Cliccando un pulsante nel menù sarà possibile eseguire le operazioni richieste.
 
 \subsection{Inserimento nuovo utente}
 Cliccando su \textit{Aggiungi utente} viene visualizzata una form da compilare per inserire i dati dell'utente da registrare nel sistema, come mostrato nella \Fig\ref{fig:new_user}. 
@@ -46,7 +46,7 @@ Cliccando su \textit{Aggiungi utente} viene visualizzata una form da compilare p
 
 Si noti in particolare che bisogna anche indicare il ruolo del nuovo utente. Se viene cliccato il ruolo \textit{Volontario} oppure \textit{Caposquadra}, viene mostrata anche una \textit{combo box} nella quale è possibile scegliere una delle squadre disponibili in cui inserire l'utente.
 
-Nel caso in cui si voglia inserire un volontario, le squadre selezionate vengono così selezionate: 
+Nel caso in cui si voglia inserire un volontario, le squadre mostrate vengono così selezionate: 
 \begin{itemize}
 	\item se l'utente attualmente loggato è un amministratore, vengono mostrate tutte le squadre inserite nel sistema;
 	\item se l'utente attualmente loggato è un caposquadra, viene mostrata solamente la propria squadra.
@@ -82,7 +82,7 @@ Un caposquadra o un amministratore possono visualizzare gli utenti appartenenti 
 \end{figure}
 
 \subsection{Visualizza interventi}
-I volontari e i capisquadra possono visualizzare rispettivamente gli interventi della propria squadra oppure di tutte le squadre. Cliccando su \textit{Visualizza interventi}, viene mostrato un calendario sul quale selezionare una data (\Fig\ref{fig:view_operation}). Vengono così mostrati gli interventi programmati in quella giornata.
+I volontari possono visualizzare gli interventi della propria squadra, mentre i capisquadra quelli di tutte le squadre. Cliccando su \textit{Visualizza interventi}, viene mostrato un calendario sul quale selezionare una data (\Fig\ref{fig:view_operation}). Vengono così mostrati gli interventi programmati in quella giornata.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=1\linewidth]{./ImageFiles/view_operation.png}
@@ -144,7 +144,7 @@ Le classi \texttt{UserRepository}, \texttt{TeamRepository} e \texttt{OperationRe
 \subsection{STL: std::vector, std::map, std::iterator}
 All'interno dell'applicazione sono stati utilizzati i \textit{containers} \texttt{vector} e \texttt{map} forniti dalla \textit{Standard Template Library}. In particolare, le classi descritte nella sezione \ref{sec:singleton}, memorizzano utenti, squadre e interventi utilizzando una mappa \textit{chiave-valore}, in cui la chiave è di tipo \texttt{int} (costituita dall'id dell'oggetto) mentre il valore è uno \textit{smart pointer} all'oggetto. Ad esempio, la mappa che permette la memorizzazione degli utenti è stata dichiarata nel seguente modo:
 \lstinputlisting[language=C++]{./OtherFiles/map.cpp}
-Si è scelto di utilizzare una mappa per rendere efficiente le operazioni di ricerca tramite l'id dell'utente. Per permettere il polimorfismo (ossia memorizzare oggetti delle sottoclassi del tipo \texttt{User}), evitando il fenomeno dello \textit{slicing}, è stato necessario definire il \textit{valore} della mappa come puntatore di tipo \texttt{User}. Inoltre, affinché fosse garantita la distruzione corretta dell'oggetto puntato, si sono utilizzati i puntatori smart di tipo \textit{shared}, descritti nella sezione successiva. In questo modo, quando viene cancellato dalla mappa il riferimento alla risorsa, viene chiamato il distruttore dell'oggetto (se non sono più attivi altri riferimenti).
+Si è scelto di utilizzare una mappa per rendere efficiente le operazioni di ricerca tramite l'id dell'utente. Per permettere il polimorfismo (ossia memorizzare oggetti delle sottoclassi del tipo \texttt{User}), evitando il fenomeno dello \textit{slicing}, è stato necessario definire il \textit{valore} della mappa come puntatore di tipo \texttt{User}. Inoltre, affinché fosse garantita la distruzione corretta dell'oggetto puntato, si sono utilizzati i puntatori smart di tipo \textit{shared}, descritti nella sezione successiva. In questo modo, quando viene cancellato dalla mappa il riferimento alla risorsa, viene chiamato il distruttore dell'oggetto \texttt{User} (se non sono più attivi altri riferimenti).
 
 In alcuni casi, sono stati utilizzati anche oggetti di tipo \textit{vector}, che permettono la definizione di una lista di oggetti. Ad esempio, si riporta la definizione del metodo che restituisce tutti gli utenti inseriti nel sistema:
 \lstinputlisting[language=C++]{./OtherFiles/vector.cpp}
@@ -153,7 +153,7 @@ Per scorrere vettori e mappe sono stati usati gli iteratori, sempre forniti dall
 \lstinputlisting[language=C++]{./OtherFiles/iterators.cpp}
 
 \subsection{Smart pointers: shared\textunderscore ptr} 
-Nel progetto realizzato, si sono spesso utilizzati degli \textit{smart pointers} per semplificare l'utilizzo di puntatori agli oggetti. Inoltre, i puntatori intelligenti permettono di evitare problemi quali \textit{dangling pointers} e \textit{memory leaks}, tipici dell'utilizzo non corretto dei puntatori. In particolare, si sono utilizzati gli \texttt{shared\textunderscore ptr<...>}, che permettono proprietari multipli del puntatore raw sottostante. In questo modo, possono essere copiati e passati come parametri ai metodi.
+Nel progetto realizzato, si sono spesso utilizzati degli \textit{smart pointers} per semplificare l'utilizzo di puntatori agli oggetti che permettono di evitare problemi quali \textit{dangling pointers} e \textit{memory leaks}, tipici dell'utilizzo non corretto dei puntatori. In particolare, si sono utilizzati gli \texttt{shared\textunderscore ptr<...>}, che permettono proprietari multipli del puntatore raw sottostante. In questo modo, possono essere copiati e passati come parametri ai metodi.
 \lstinputlisting[language=C++]{./OtherFiles/smartpointers.cpp}
 
 \subsection{Template}

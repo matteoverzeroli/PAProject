@@ -15,7 +15,7 @@ Per fare ciò, inizialmente si calcola la radice quadrata del numero di caratter
 \lstinputlisting[language=haskell]{./OtherFiles/split.hs}
 Per far sì che il rettangolo abbia tutte le righe di uguale lunghezza, vengono aggiunti degli spazi bianchi a destra tramite la funzione \textit{addws}:
 \lstinputlisting[language=haskell]{./OtherFiles/addws.hs}
-Infine, il messaggio cifrato si ottiene leggendo le colonne dall'alto verso il basso, carattere per carattere, da sinistra verso destra (funzione \textit{transpose}).
+Il messaggio cifrato si ottiene leggendo le colonne dall'alto verso il basso, carattere per carattere, da sinistra verso destra (funzione \textit{transpose}).
 \lstinputlisting[language=haskell]{./OtherFiles/encode_cs.hs}
 Infine, a seconda della scelta dell'utente, il messaggio può essere normalizzato per nascondere le dimensioni del rettangolo, che si comportano come "chiave" utile per decifrare il messaggio.
 
