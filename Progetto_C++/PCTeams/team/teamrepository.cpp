@@ -35,7 +35,6 @@ void TeamRepository::insertTeam(Team *team)
 {
     std::shared_ptr<Team> new_team(team);
     teamtable[team->getIdteam()] = new_team;
-
 }
 
 bool TeamRepository::removeTeam(int idteam)

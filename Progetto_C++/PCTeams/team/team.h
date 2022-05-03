@@ -8,7 +8,7 @@
 class Team
 {
 public:
-    Team(); //costruttore utilizzato solamente per creare team temporanei
+    Team(); //costruttore di default utilizzato solamente per creare team temporanei
     Team(const QString &name, const QString &areaname, QGeoCoordinate* coordinate);
 
     ~Team(){

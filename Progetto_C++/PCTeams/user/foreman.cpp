@@ -52,6 +52,8 @@ std::shared_ptr<Team> Foreman::getTeam() const
 
 void Foreman::populateVolunteerComboBox(QComboBox *comboBox)
 {
+    comboBox->clear();
+
     auto users = UserRepository::getInstance()->getAllUser();
 
     for(auto it = users.begin(); it != users.end(); ++it){

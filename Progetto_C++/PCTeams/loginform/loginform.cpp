@@ -9,10 +9,6 @@ LoginForm::LoginForm(QWidget *parent, MainWindow* mainwindow) :
     QDialog(parent),
     ui(new Ui::LoginForm)
 {
-    /*
-     * Layout setup
-     *
-    */
     ui->setupUi(this);
     setFixedSize(this->geometry().width(),this->geometry().height()); //set fixed size of the window
 
@@ -23,8 +19,7 @@ LoginForm::LoginForm(QWidget *parent, MainWindow* mainwindow) :
 
     mainwindow_ref = mainwindow;
 
-    connect(mainwindow,SIGNAL(logout()),this,SLOT(logout()));
-
+    connect(mainwindow,SIGNAL(logout()),this,SLOT(logout())); //logout signal/slot connection
 }
 
 LoginForm::~LoginForm()

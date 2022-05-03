@@ -110,13 +110,14 @@ User::User(const QString &password, const QString &name, const QString &surname,
     cellnumber(cellnumber),
     sex(sex),
     picture(picture)
-{}
+{
+
+}
 
 User::User()
 {
 
 }
-
 
 std::ostream& operator<<(std::ostream &strm, const User &u) {
   return strm << "User: " << u.iduser << " " << u.name.toStdString() << " " << u.surname.toStdString();

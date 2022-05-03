@@ -94,9 +94,9 @@ void MainWindow::on_pushButton_nu_adduser_clicked()
 
             ui->statusbar->setStyleSheet("color:green");
             ui->statusbar->showMessage("Caposquadra " + new_foreman->toString() + " aggiunto correttamente!");
-
-            clearNewUserAttribute();
         }
+
+        clearNewUserAttribute();
     }
     else{
         QMessageBox::critical(this, "Errore", "Alcuni campi vuoti!", QMessageBox::Ok);
@@ -211,6 +211,7 @@ void MainWindow::on_pushButton_op_add_clicked()
 
         clearNewOperationAttribute();
         ui->stackedWidget_info->setCurrentIndex(3);
+        on_calendarWidget_clicked(QDate(ui->dateTimeEdit_op_start->date()));
 
         ui->statusbar->setStyleSheet("color:green");
         ui->statusbar->showMessage("Intervento: " + new_op->getName() + " aggiunto correttamente!");
@@ -225,9 +226,13 @@ void MainWindow::on_pushButton_op_newop_clicked()
 {   
     ui->stackedWidget_info->setCurrentIndex(4);
 
+    ui->comboBox_op_color->clear();
     ui->comboBox_op_color->addItem(Operation::colorToString(COLOR::RED));
     ui->comboBox_op_color->addItem(Operation::colorToString(COLOR::ORANGE));
     ui->comboBox_op_color->addItem(Operation::colorToString(COLOR::GREEN));
+
+    ui->comboBox_op_teams->clear();
+    ui->comboBox_op_users->clear();
 
     std::shared_ptr<Foreman> foreman =
                    std::dynamic_pointer_cast<Foreman> (currentuser);
@@ -306,7 +311,8 @@ bool MainWindow::nullNewUserAttribute(){
            ui->lineEdit_nu_email->text().isEmpty() ||
            ui->lineEdit_pathpic->text().isEmpty() ||
            ui->lineEdit_nu_psw->text().isEmpty() ||
-           ui->lineEdit_nu_cellnumber->text().isEmpty();
+           ui->lineEdit_nu_cellnumber->text().isEmpty() ||
+           ui->comboBox_nu_team->currentText().isEmpty();
 }
 /**
  * Verifica che i campi del nuovo intervento da inserire non siano vuoti
@@ -353,6 +359,7 @@ void MainWindow::clearNewOperationAttribute(){
     ui->lineEdit_op_address->clear();
     ui->lineEdit_op_lat->clear();
     ui->lineEdit_op_lng->clear();
+    ui->lineEdit_op_cellnumber->clear();
     ui->lineEdit_op_petitioner->clear();
     ui->dateTimeEdit_op_start->clear();
     ui->dateTimeEdit_op_stop->clear();

@@ -164,9 +164,9 @@ const QIcon Operation::colorToIcon(COLOR c)
 
 COLOR Operation::stringToColor(QString s)
 {
-    if(s == "RED")
+    if(s == "ROSSO")
         return COLOR::RED;
-    else if(s == "ORANGE")
+    else if(s == "ARANCIO")
         return COLOR::ORANGE;
     else
         return COLOR::GREEN;
